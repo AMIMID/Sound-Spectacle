@@ -1,3 +1,15 @@
+
+(
+s.options.numWireBufs = 1024*16;
+s.options.numOutputBusChannels=4;
+s.options.numInputBusChannels=0;
+TempoClock.default.tempo_(120/120);
+s.options.memSize = 8192*64;
+//s.options.blockSize = 64/4;
+s.options.maxNodes = 1024 * 64;
+s.waitForBoot
+)
+
 (
 // 3D
 ~a = VBAPSpeakerArray.new(3, [[0, 45], [180, 45], [90, 45.neg], [90.neg, 45.neg]]);
@@ -17,9 +29,17 @@
 
 (
 SynthDef.new(\o1, {
-	arg n,decay,ng1=1,ng2=1,ng3=1,ng4=1,ng5=1,ng6=1,x=1,y=1,z=1;
+	arg n=1,decay=2,ng1=1,ng2=1,ng3=1,ng4=1,ng5=1,ng6=1,x=1,y=1,z=1;
     var in1,in2, chainx,chainy,b=0,angle,r1,r2,i,j,k,i1,j1,k1;
 	var v,q,q1,v1,vp,chainxx,chainyy,cva,cvb,pitch,env;
+	var wrappedOut1 = { |busArray, signalArray|
+	[busArray, signalArray].flop.do { |pair|
+		Out.ar(pair[0], pair[1])}};
+	var wrappedOut2 = { |busArray, signalArray|
+	[busArray, signalArray].flop.do { |pair|
+		Out.ar(pair[0], pair[1])}};
+
+	var out = NamedControl.kr(\out, [0, 1, 2, 3]);  // multiple buses!
 
 	pitch=2.pow(n/12);
 
@@ -62,8 +82,8 @@ SynthDef.new(\o1, {
    chainyy = chainy.pvcollect(1024, {|mag, phase, index| [mag, phase]; }, frombin: b, tobin: b, zeroothers: 1);
 
 	b=b+1;
-	Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad)*env);
-Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad)*env);
+		wrappedOut1.value(out,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad)*env);
+	wrappedOut2.value(out,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad)*env);
 
 
 	}
@@ -197,6 +217,7 @@ v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 (
 b=Pdef(\2, Pbind(\instrument, \o1,
 	\dur,Pseq(~phase2.abs,inf),
+	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
 \n,PdegreeToKey(Pseq(~n2,1),Scale.phrygian),
 	\x,Pbrown(0,1,0.1,inf),
 	\y,Pbrown(0,1,0.1,inf),
@@ -207,10 +228,11 @@ b=Pdef(\2, Pbind(\instrument, \o1,
 			\ng4,Prand([1.neg,1,1.neg,1],inf),
 	\ng5,Prand([1.neg,1,1.neg,1],inf),
 	\ng6,Prand([1.neg,1,1.neg,1],inf),
-	\decay,Pbrown(2,8,1,inf);
+	\decay,Pbrown(1,2,1,inf);
 ));
 c=Pdef(\3, Pbind(\instrument, \o2,
 	\dur,Pseq(~phase2.abs,inf),
+	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
 \n,PdegreeToKey(Pseq(~n2,1),Scale.phrygian),
 	\x,Pbrown(0,1,0.1,inf),
 	\y,Pbrown(0,1,0.1,inf),
@@ -223,12 +245,13 @@ c=Pdef(\3, Pbind(\instrument, \o2,
 	\ng5,Prand([1.neg,1,1.neg,1],inf),
 
 \ng6,Prand([1.neg,1,1.neg,1],inf),
-	\decay,Pbrown(2,8,1,inf);
+	\decay,Pbrown(1,2,1,inf);
 ));
 
 d=Pdef(\4, Pbind(\instrument, \o3,
 
 	\dur,Pseq(~phase2.abs,inf),
+	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
 \n,PdegreeToKey(Pseq(~n2,1),Scale.phrygian),
 	\x,Pbrown(0,1,0.1,inf),
 	\y,Pbrown(0,1,0.1,inf),
@@ -239,7 +262,7 @@ d=Pdef(\4, Pbind(\instrument, \o3,
 			\ng4,Prand([1.neg,1,1.neg,1],inf),
 	\ng5,Prand([1.neg,1,1.neg,1],inf),
 	\ng6,Prand([1.neg,1,1.neg,1],inf),
-	\decay,Pbrown(2,8,1,inf);
+	\decay,Pbrown(1,2,1,inf);
 ));
 );
 
