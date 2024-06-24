@@ -133,8 +133,8 @@ SynthDef.new(\o1, {
 
 	b=b+1;
 
-		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad));
-		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad));
+		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg));
+		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg));
 
 
 	}
@@ -182,8 +182,8 @@ SynthDef.new(\o2, {
 
 	b=b+1;
 
-		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad));
-		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad));
+		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg));
+		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg));
 
 
 	}
@@ -231,8 +231,8 @@ SynthDef.new(\o3, {
 
 	b=b+1;
 
-		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad));
-		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad));
+		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg));
+		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg));
 
 
 	}
@@ -280,8 +280,8 @@ SynthDef.new(\o4, {
 
 	b=b+1;
 
-		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad));
-		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad));
+		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg));
+		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg));
 
 
 	}
@@ -329,8 +329,8 @@ SynthDef.new(\o5, {
 
 	b=b+1;
 
-		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad));
-		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad));
+		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg));
+		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg));
 
 
 	}
@@ -378,8 +378,8 @@ SynthDef.new(\o6, {
 
 	b=b+1;
 
-		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad));
-		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad));
+		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg));
+		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg));
 
 
 	}
@@ -427,8 +427,8 @@ SynthDef.new(\o7, {
 
 	b=b+1;
 
-		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad));
-		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad));
+		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg));
+		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg));
 
 
 	}
@@ -476,8 +476,8 @@ SynthDef.new(\o8, {
 
 	b=b+1;
 
-		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad));
-		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad));
+		Out.ar(0,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg));
+		Out.ar(0,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg));
 
 
 	}
@@ -579,8 +579,8 @@ angle1=(angle1+(360-(360/1.6180339887499))).wrap(0,360);
 env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:phx.real.round(0.0001));
 env2=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:phx.imag.round(0.0001));
 
-osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.degrad,cva.phi.degrad);
-osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad);
+osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
+osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
 
 m=m+1;
 

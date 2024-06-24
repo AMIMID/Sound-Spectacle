@@ -82,8 +82,8 @@ SynthDef.new(\o1, {
    chainyy = chainy.pvcollect(1024, {|mag, phase, index| [mag, phase]; }, frombin: b, tobin: b, zeroothers: 1);
 
 	b=b+1;
-		wrappedOut1.value(out,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.degrad,cva.phi.degrad)*env);
-	wrappedOut2.value(out,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.degrad,cvb.phi.degrad)*env);
+		wrappedOut1.value(out,VBAP.ar(4,IFFT(chainxx),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg)*env);
+	wrappedOut2.value(out,VBAP.ar(4,IFFT(chainyy),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg)*env);
 
 
 	}
