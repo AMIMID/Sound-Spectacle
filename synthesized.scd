@@ -2,7 +2,7 @@
 s.options.numWireBufs = 1024*16;
 s.options.numOutputBusChannels=4;
 s.options.numInputBusChannels=0;
-TempoClock.default.tempo_(80/120);
+TempoClock.default.tempo_(120/120);
 s.options.memSize = 8192*64;
 //s.options.blockSize = 64/4;
 s.options.maxNodes = 1024 * 64;
@@ -82,8 +82,8 @@ env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:p
 env2=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:phx.imag.round(0.0001));
 
 
-osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg+LFSaw.ar(0.1,mul:180),cva.phi.raddeg+LFSaw.ar(0.1,mul:90));
-osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg+LFSaw.ar(0.1,mul:180),cvb.phi.raddeg+LFSaw.ar(0.1,mul:90));
+osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
+osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
 
 m=m+1;
 
@@ -153,8 +153,8 @@ env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:p
 env2=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:phx.imag.round(0.0001));
 
 
-osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg+LFSaw.ar(0.1,mul:180),cva.phi.raddeg+LFSaw.ar(0.1,mul:90));
-osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg+LFSaw.ar(0.1,mul:180),cvb.phi.raddeg+LFSaw.ar(0.1,mul:90));
+osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
+osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
 
 m=m+1;
 
@@ -224,8 +224,8 @@ env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:p
 env2=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:phx.imag.round(0.0001));
 
 
-osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg+LFSaw.ar(0.1,mul:180),cva.phi.raddeg+LFSaw.ar(0.1,mul:90));
-osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg+LFSaw.ar(0.1,mul:180),cvb.phi.raddeg+LFSaw.ar(0.1,mul:90));
+osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
+osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
 
 m=m+1;
 
@@ -558,9 +558,9 @@ b=Pdef(\2, Pbind(\instrument, \ob,
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
 	\coef,Pexprand(0.0001,0.1,inf),
-	\x,Pseq(~posb1,inf),
-	\y,Pseq(~posb2,inf),
-	\z,Pseq(~posb3,inf),
+	\x,Pseq(~posb2,inf),
+	\y,Pseq(~posb3,inf),
+	\z,Pseq(~posb4,inf),
 	\rx,Pbrown(0,1,0.1,inf),
 	\ry,Pbrown(0,1,0.1,inf),
 	\rz,Pbrown(0,1,0.1,inf),
@@ -582,9 +582,9 @@ c=Pdef(\3, Pbind(\instrument, \oc,
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
 	\coef,Pexprand(0.0001,0.1,inf),
-	\x,Pseq(~posc1,inf),
-	\y,Pseq(~posc2,inf),
-	\z,Pseq(~posc3,inf),
+	\x,Pseq(~posc2,inf),
+	\y,Pseq(~posc3,inf),
+	\z,Pseq(~posc4,inf),
 	\rx,Pbrown(0,1,0.1,inf),
 	\ry,Pbrown(0,1,0.1,inf),
 	\rz,Pbrown(0,1,0.1,inf),
@@ -606,9 +606,9 @@ d=Pdef(\4, Pbind(\instrument, \od,
 	\cutt,Pbrown(220*2,220*8,100,inf),
 	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
 	\coef,Pexprand(0.0001,0.1,inf),
-	\x,Pseq(~posd1,inf),
-	\y,Pseq(~posd2,inf),
-	\z,Pseq(~posd3,inf),
+	\x,Pseq(~posd2,inf),
+	\y,Pseq(~posd3,inf),
+	\z,Pseq(~posd4,inf),
 	\rx,Pbrown(0,1,0.1,inf),
 	\ry,Pbrown(0,1,0.1,inf),
 	\rz,Pbrown(0,1,0.1,inf),
