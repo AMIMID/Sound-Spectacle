@@ -2,7 +2,7 @@
 s.options.numWireBufs = 1024*16;
 s.options.numOutputBusChannels=4;
 s.options.numInputBusChannels=0;
-TempoClock.default.tempo_(120/120);
+TempoClock.default.tempo_(80/120);
 s.options.memSize = 8192*64;
 //s.options.blockSize = 64/4;
 s.options.maxNodes = 1024 * 64;
@@ -27,28 +27,13 @@ Buffer.freeAll
 (
 (
 SynthDef.new(\ob, {
-	arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,ng1=1,ng2=1,ng3=1,ng4=1,ng5=1,ng6=1,coef=0.1;
-	var q,q1,i,j,k,i1,j1,k1,va,vb,v1,v2,v3,v4,v5,v6,ph_v1_x,or=0;
-	var ph_v1_y,ph_v1_z,ph_v2_x,ph_v2_y,ph_v2_z,ph_va_x,ph_va_y,ph_va_z,ph_vb_x,ph_vb_y,ph_vb_z;
-	var osc1,osc2,osc3,freq, env1,env2,m=1,bank, pitch, fund, angle=0,angle1=90,r1,r2,p;
-	var osc1_x,osc1_y,osc1_z,osc2_x,osc2_y,osc2_z,cvax,cvay,cvaz,cvbx,cvby,cvbz,cva,cvb,phx,phy;
-	var spacex,timex,spacey,timey,spacez,timez,ang=(360-(360/1.6180339887499));
+arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,ng1=1,ng2=1,ng3=1,ng4=1,ng5=1,ng6=1,coef=0.01;
+	var q,q1,i,j,k,i1,j1,k1,va,vb,or=0,freq, env1,env2,m=1,bank, pitch, fund, angle=0,angle1=90,r1,r2,p;
+	var osc1_x,osc1_y,cva,cvb,phx,phy,ang=(360-(360/1.6180339887499));
 	var wrappedOut1 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
 		Out.ar(pair[0], pair[1])}};
 	var wrappedOut2 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-	var wrappedOut3 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-		var wrappedOut4 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-	var wrappedOut5 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-	var wrappedOut6 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
 		Out.ar(pair[0], pair[1])}};
 
@@ -57,30 +42,23 @@ SynthDef.new(\ob, {
 	r1=[rx,ry,rz].normalizeSum;
 	r2=[rx1,ry1,rz1].normalizeSum;
 
-	i = Quaternion(0, r1.[0].sqrt, 0, 0);
-	j = Quaternion(0, 0,r1.[1].sqrt, 0);
-	k = Quaternion(0, 0, 0, r1.[2].sqrt);
+	i = Quaternion(0, r1.[0].sqrt*ng1, 0, 0);
+	j = Quaternion(0, 0,r1.[1].sqrt*ng2, 0);
+	k = Quaternion(0, 0, 0, r1.[2].sqrt*ng3);
 
-	i1 = Quaternion(0, r2.[0].sqrt, 0, 0);
-	j1 = Quaternion(0, 0,r2.[1].sqrt, 0);
-	k1 = Quaternion(0, 0, 0, r2.[2].sqrt);
+	i1 = Quaternion(0, r2.[0].sqrt*ng4, 0, 0);
+	j1 = Quaternion(0, 0,r2.[1].sqrt*ng5, 0);
+	k1 = Quaternion(0, 0, 0, r2.[2].sqrt*ng6);
 
-	p=[x,y,z].normalizeSum;
+	p=[x,y,z];
 
-
-	v1=Quaternion(0,p.[0].sqrt*ng1,0,0);
-	v2=Quaternion(0,0,p.[1].sqrt*ng2,0);
-	v3=Quaternion(0,0,0,p.[2].sqrt*ng3);
-	v4=Quaternion(0,p.[0].sqrt*ng1,0,0);
-	v5=Quaternion(0,0,p.[1].sqrt*ng2,0);
-	v6=Quaternion(0,0,0,p.[2].sqrt*ng3);
-	va=Quaternion(0,p.[0].sqrt*ng1,p.[1].sqrt*ng2,p.[2].sqrt*ng3);
-	vb=Quaternion(0,p.[0].sqrt*ng4,p.[1].sqrt*ng5,p.[2].sqrt*ng6);
+	va=Quaternion(0,p.[0],p.[1],p.[2]);
+	vb=Quaternion(0,p.[0],p.[1],p.[2]);
 
 	bank=8;
 	pitch=2.pow(n1/(2*6));
 	fund=(((4*t)-1)*((4*t)/2));
-	freq = (fund*6)*pitch;
+	freq = (fund*12)*pitch;
 
 	bank.do{
 angle=(angle+(360-(360/1.6180339887499))).wrap(0,360);
@@ -104,8 +82,8 @@ env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:p
 env2=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:phx.imag.round(0.0001));
 
 
-osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
-osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
+osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg+LFSaw.ar(0.1,mul:180),cva.phi.raddeg+LFSaw.ar(0.1,mul:90));
+osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg+LFSaw.ar(0.1,mul:180),cvb.phi.raddeg+LFSaw.ar(0.1,mul:90));
 
 m=m+1;
 
@@ -120,28 +98,13 @@ m=m+1;
 );
 (
 SynthDef.new(\oc, {
-arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,ng1=1,ng2=1,ng3=1,ng4=1,ng5=1,ng6=1,coef=0.1;
-	var q,q1,i,j,k,i1,j1,k1,va,vb,v1,v2,v3,v4,v5,v6,ph_v1_x,or=0;
-	var ph_v1_y,ph_v1_z,ph_v2_x,ph_v2_y,ph_v2_z,ph_va_x,ph_va_y,ph_va_z,ph_vb_x,ph_vb_y,ph_vb_z;
-	var osc1,osc2,osc3,freq, env1,env2,m=1,bank, pitch, fund, angle=0,angle1=90,r1,r2,p;
-	var osc1_x,osc1_y,osc1_z,osc2_x,osc2_y,osc2_z,cvax,cvay,cvaz,cvbx,cvby,cvbz,cva,cvb,phx,phy;
-	var spacex,timex,spacey,timey,spacez,timez,ang=(360-(360/1.6180339887499));
+arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,ng1=1,ng2=1,ng3=1,ng4=1,ng5=1,ng6=1,coef=0.01;
+	var q,q1,i,j,k,i1,j1,k1,va,vb,or=0,freq, env1,env2,m=1,bank, pitch, fund, angle=0,angle1=90,r1,r2,p;
+	var osc1_x,osc1_y,cva,cvb,phx,phy,ang=(360-(360/1.6180339887499));
 	var wrappedOut1 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
 		Out.ar(pair[0], pair[1])}};
 	var wrappedOut2 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-	var wrappedOut3 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-		var wrappedOut4 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-	var wrappedOut5 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-	var wrappedOut6 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
 		Out.ar(pair[0], pair[1])}};
 
@@ -150,30 +113,23 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,rx1=
 	r1=[rx,ry,rz].normalizeSum;
 	r2=[rx1,ry1,rz1].normalizeSum;
 
-	i = Quaternion(0, r1.[0].sqrt, 0, 0);
-	j = Quaternion(0, 0,r1.[1].sqrt, 0);
-	k = Quaternion(0, 0, 0, r1.[2].sqrt);
+	i = Quaternion(0, r1.[0].sqrt*ng1, 0, 0);
+	j = Quaternion(0, 0,r1.[1].sqrt*ng2, 0);
+	k = Quaternion(0, 0, 0, r1.[2].sqrt*ng3);
 
-	i1 = Quaternion(0, r2.[0].sqrt, 0, 0);
-	j1 = Quaternion(0, 0,r2.[1].sqrt, 0);
-	k1 = Quaternion(0, 0, 0, r2.[2].sqrt);
+	i1 = Quaternion(0, r2.[0].sqrt*ng4, 0, 0);
+	j1 = Quaternion(0, 0,r2.[1].sqrt*ng5, 0);
+	k1 = Quaternion(0, 0, 0, r2.[2].sqrt*ng6);
 
-	p=[x,y,z].normalizeSum;
+	p=[x,y,z];
 
-
-	v1=Quaternion(0,p.[0].sqrt*ng1,0,0);
-	v2=Quaternion(0,0,p.[1].sqrt*ng2,0);
-	v3=Quaternion(0,0,0,p.[2].sqrt*ng3);
-	v4=Quaternion(0,p.[0].sqrt*ng1,0,0);
-	v5=Quaternion(0,0,p.[1].sqrt*ng2,0);
-	v6=Quaternion(0,0,0,p.[2].sqrt*ng3);
-	va=Quaternion(0,p.[0].sqrt*ng1,p.[1].sqrt*ng2,p.[2].sqrt*ng3);
-	vb=Quaternion(0,p.[0].sqrt*ng4,p.[1].sqrt*ng5,p.[2].sqrt*ng6);
+	va=Quaternion(0,p.[0],p.[1],p.[2]);
+	vb=Quaternion(0,p.[0],p.[1],p.[2]);
 
 	bank=8;
 	pitch=2.pow(n1/(2*6));
 	fund=(((4*t)-1)*((4*t)/2));
-	freq = (fund*6)*pitch;
+	freq = (fund*12)*pitch;
 
 	bank.do{
 angle=(angle+(360-(360/1.6180339887499))).wrap(0,360);
@@ -197,8 +153,8 @@ env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:p
 env2=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:phx.imag.round(0.0001));
 
 
-osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
-osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
+osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg+LFSaw.ar(0.1,mul:180),cva.phi.raddeg+LFSaw.ar(0.1,mul:90));
+osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg+LFSaw.ar(0.1,mul:180),cvb.phi.raddeg+LFSaw.ar(0.1,mul:90));
 
 m=m+1;
 
@@ -213,28 +169,13 @@ m=m+1;
 );
 (
 SynthDef.new(\od, {
-arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,ng1=1,ng2=1,ng3=1,ng4=1,ng5=1,ng6=1,coef=0.1;
-	var q,q1,i,j,k,i1,j1,k1,va,vb,v1,v2,v3,v4,v5,v6,ph_v1_x,or=0;
-	var ph_v1_y,ph_v1_z,ph_v2_x,ph_v2_y,ph_v2_z,ph_va_x,ph_va_y,ph_va_z,ph_vb_x,ph_vb_y,ph_vb_z;
-	var osc1,osc2,osc3,freq, env1,env2,m=1,bank, pitch, fund, angle=0,angle1=90,r1,r2,p;
-	var osc1_x,osc1_y,osc1_z,osc2_x,osc2_y,osc2_z,cvax,cvay,cvaz,cvbx,cvby,cvbz,cva,cvb,phx,phy;
-	var spacex,timex,spacey,timey,spacez,timez,ang=(360-(360/1.6180339887499));
+arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,ng1=1,ng2=1,ng3=1,ng4=1,ng5=1,ng6=1,coef=0.01;
+	var q,q1,i,j,k,i1,j1,k1,va,vb,or=0,freq, env1,env2,m=1,bank, pitch, fund, angle=0,angle1=90,r1,r2,p;
+	var osc1_x,osc1_y,cva,cvb,phx,phy,ang=(360-(360/1.6180339887499));
 	var wrappedOut1 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
 		Out.ar(pair[0], pair[1])}};
 	var wrappedOut2 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-	var wrappedOut3 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-		var wrappedOut4 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-	var wrappedOut5 = { |busArray, signalArray|
-	[busArray, signalArray].flop.do { |pair|
-		Out.ar(pair[0], pair[1])}};
-	var wrappedOut6 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
 		Out.ar(pair[0], pair[1])}};
 
@@ -243,30 +184,23 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,rx1=
 	r1=[rx,ry,rz].normalizeSum;
 	r2=[rx1,ry1,rz1].normalizeSum;
 
-	i = Quaternion(0, r1.[0].sqrt, 0, 0);
-	j = Quaternion(0, 0,r1.[1].sqrt, 0);
-	k = Quaternion(0, 0, 0, r1.[2].sqrt);
+	i = Quaternion(0, r1.[0].sqrt*ng1, 0, 0);
+	j = Quaternion(0, 0,r1.[1].sqrt*ng2, 0);
+	k = Quaternion(0, 0, 0, r1.[2].sqrt*ng3);
 
-	i1 = Quaternion(0, r2.[0].sqrt, 0, 0);
-	j1 = Quaternion(0, 0,r2.[1].sqrt, 0);
-	k1 = Quaternion(0, 0, 0, r2.[2].sqrt);
+	i1 = Quaternion(0, r2.[0].sqrt*ng4, 0, 0);
+	j1 = Quaternion(0, 0,r2.[1].sqrt*ng5, 0);
+	k1 = Quaternion(0, 0, 0, r2.[2].sqrt*ng6);
 
-	p=[x,y,z].normalizeSum;
+	p=[x,y,z];
 
-
-	v1=Quaternion(0,p.[0].sqrt*ng1,0,0);
-	v2=Quaternion(0,0,p.[1].sqrt*ng2,0);
-	v3=Quaternion(0,0,0,p.[2].sqrt*ng3);
-	v4=Quaternion(0,p.[0].sqrt*ng1,0,0);
-	v5=Quaternion(0,0,p.[1].sqrt*ng2,0);
-	v6=Quaternion(0,0,0,p.[2].sqrt*ng3);
-	va=Quaternion(0,p.[0].sqrt*ng1,p.[1].sqrt*ng2,p.[2].sqrt*ng3);
-	vb=Quaternion(0,p.[0].sqrt*ng4,p.[1].sqrt*ng5,p.[2].sqrt*ng6);
+	va=Quaternion(0,p.[0],p.[1],p.[2]);
+	vb=Quaternion(0,p.[0],p.[1],p.[2]);
 
 	bank=8;
 	pitch=2.pow(n1/(2*6));
 	fund=(((4*t)-1)*((4*t)/2));
-	freq = (fund*6)*pitch;
+	freq = (fund*12)*pitch;
 
 	bank.do{
 angle=(angle+(360-(360/1.6180339887499))).wrap(0,360);
@@ -290,8 +224,8 @@ env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:p
 env2=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:phx.imag.round(0.0001));
 
 
-osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
-osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
+osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg+LFSaw.ar(0.1,mul:180),cva.phi.raddeg+LFSaw.ar(0.1,mul:90));
+osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg+LFSaw.ar(0.1,mul:180),cvb.phi.raddeg+LFSaw.ar(0.1,mul:90));
 
 m=m+1;
 
@@ -307,7 +241,7 @@ m=m+1;
 )
 
 
-
+(
 (
 var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=2;
 var i = Quaternion(0, (1/3).sqrt, 0, 0),j = Quaternion(0, 0, (1/3).sqrt, 0),k = Quaternion(0, 0, 0, (1/3).sqrt);
@@ -320,56 +254,54 @@ v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 
-~axis=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis1=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
 	~phase1 = 10000.collect{
 		angle1=((360-(360/1.6180339887499)));
 		q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
-	i=Quaternion(0,~axis.[i1].[0].sqrt,0,0);
-	j=Quaternion(0,0,~axis.[i1].[1].sqrt,0);
-	k=Quaternion(0,0,0,~axis.[i1].[2].sqrt);
+	i=Quaternion(0,~axis1.[i1].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis1.[i1].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis1.[i1].[2].sqrt);
 	i1=i1+1;
 	v1=q1*v1*q1.conjugate;
-	ph1=(v1.a*m).round(0.25);
+	ph1=(v1.a*m).round(1/32);
 	};
 
 ~phase2 = 10000.collect{
 		angle2=((360-(360/1.6180339887499)));
 		q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
-	i=Quaternion(0,~axis.[i2].[0].sqrt,0,0);
-	j=Quaternion(0,0,~axis.[i2].[1].sqrt,0);
-	k=Quaternion(0,0,0,~axis.[i2].[2].sqrt);
+	i=Quaternion(0,~axis1.[i2].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis1.[i2].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis1.[i2].[2].sqrt);
 	i2=i2+1;
 	v2=q2*v2*q2.conjugate;
-	ph2=(v2.b*m).round(0.25);
+	ph2=(v2.b*m).round(1/32);
 	};
 
 ~phase3 = 10000.collect{
 		angle3=((360-(360/1.6180339887499)));
 		q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
-	i=Quaternion(0,~axis.[i3].[0].sqrt,0,0);
-	j=Quaternion(0,0,~axis.[i3].[1].sqrt,0);
-	k=Quaternion(0,0,0,~axis.[i3].[2].sqrt);
+	i=Quaternion(0,~axis1.[i3].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis1.[i3].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis1.[i3].[2].sqrt);
 	i3=i3+1;
 	v3=q3*v3*q3.conjugate;
-	ph3=(v3.c*m).round(0.25);
+	ph3=(v3.c*m).round(1/32);
 
 	};
 
 ~phase4 = 10000.collect{
 		angle4=((360-(360/1.6180339887499)));
 		q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
-	i=Quaternion(0,~axis.[i4].[0].sqrt,0,0);
-	j=Quaternion(0,0,~axis.[i4].[1].sqrt,0);
-	k=Quaternion(0,0,0,~axis.[i4].[2].sqrt);
+	i=Quaternion(0,~axis1.[i4].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis1.[i4].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis1.[i4].[2].sqrt);
 	i4=i4+1;
 	v4=q4*v4*q4.conjugate;
-	ph4=(v4.d*m).round(0.25);
+	ph4=(v4.d*m).round(1/32);
 	};
 
-)
-
-
+);
 (
 var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=12;
 var i = Quaternion(0, (1/3).sqrt, 0, 0),j = Quaternion(0, 0, (1/3).sqrt, 0),k = Quaternion(0, 0, 0, (1/3).sqrt),n1,n2,n3,n4;
@@ -382,14 +314,14 @@ v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 
-~axis=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis2=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
 	~n1 = 10000.collect{
 		angle1=((360-(360/1.6180339887499)));
 		q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
-		i=Quaternion(0,~axis.[i1].[0].sqrt,0,0);
-	j=Quaternion(0,0,~axis.[i1].[1].sqrt,0);
-	k=Quaternion(0,0,0,~axis.[i1].[2].sqrt);
+		i=Quaternion(0,~axis2.[i1].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis2.[i1].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis2.[i1].[2].sqrt);
 	i1=i1+1;
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(1);
@@ -397,9 +329,9 @@ v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 ~n2 = 10000.collect{
 		angle2=((360-(360/1.6180339887499)));
 		q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
-		i=Quaternion(0,~axis.[i2].[0].sqrt,0,0);
-	j=Quaternion(0,0,~axis.[i2].[1].sqrt,0);
-	k=Quaternion(0,0,0,~axis.[i2].[2].sqrt);
+		i=Quaternion(0,~axis2.[i2].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis2.[i2].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis2.[i2].[2].sqrt);
 	i2=i2+1;
 	v2=q2*v2*q2.conjugate;
 	ph2=(v2.b*m).round(1);
@@ -408,9 +340,9 @@ v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 ~n3 = 10000.collect{
 		angle3=((360-(360/1.6180339887499)));
 		q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
-		i=Quaternion(0,~axis.[i3].[0].sqrt,0,0);
-	j=Quaternion(0,0,~axis.[i3].[1].sqrt,0);
-	k=Quaternion(0,0,0,~axis.[i3].[2].sqrt);
+		i=Quaternion(0,~axis2.[i3].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis2.[i3].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis2.[i3].[2].sqrt);
 	i3=i3+1;
 	v3=q3*v3*q3.conjugate;
 	ph3=(v3.c*m).round(1);
@@ -419,15 +351,192 @@ v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 ~n4 = 10000.collect{
 		angle4=((360-(360/1.6180339887499)));
 		q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
-		i=Quaternion(0,~axis.[i4].[0].sqrt,0,0);
-	j=Quaternion(0,0,~axis.[i4].[1].sqrt,0);
-	k=Quaternion(0,0,0,~axis.[i4].[2].sqrt);
+		i=Quaternion(0,~axis2.[i4].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis2.[i4].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis2.[i4].[2].sqrt);
 	i4=i4+1;
 	v4=q4*v4*q4.conjugate;
 	ph4=(v4.d*m).round(1);
 
 	};
+);
+(
+var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
+var i = Quaternion(0, (1/3).sqrt, 0, 0),j = Quaternion(0, 0, (1/3).sqrt, 0),k = Quaternion(0, 0, 0, (1/3).sqrt),n1,n2,n3,n4;
+var i1=0,i2=0,i3=0,i4=0;
 
+r=[1/2,2/3,3/4].normalizeSum;
+
+v1=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+
+~axis4=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+
+	~posb1 = 10000.collect{
+		angle1=((360-(360/1.6180339887499)));
+		q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis4.[i1].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis4.[i1].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis4.[i1].[2].sqrt);
+	i1=i1+1;
+	v1=q1*v1*q1.conjugate;
+	ph1=(v1.a*m).round(0.0001);
+	};
+~posb2 = 10000.collect{
+		angle2=((360-(360/1.6180339887499)));
+		q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis4.[i2].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis4.[i2].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis4.[i2].[2].sqrt);
+	i2=i2+1;
+	v2=q2*v2*q2.conjugate;
+	ph2=(v2.b*m).round(0.0001);
+	};
+
+~posb3 = 10000.collect{
+		angle3=((360-(360/1.6180339887499)));
+		q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis4.[i3].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis4.[i3].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis4.[i3].[2].sqrt);
+	i3=i3+1;
+	v3=q3*v3*q3.conjugate;
+	ph3=(v3.c*m).round(0.0001);
+	};
+
+~posb4 = 10000.collect{
+		angle4=((360-(360/1.6180339887499)));
+		q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis4.[i4].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis4.[i4].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis4.[i4].[2].sqrt);
+	i4=i4+1;
+	v4=q4*v4*q4.conjugate;
+	ph4=(v4.d*m).round(0.0001);
+
+	};
+
+);
+(
+var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
+var i = Quaternion(0, (1/3).sqrt, 0, 0),j = Quaternion(0, 0, (1/3).sqrt, 0),k = Quaternion(0, 0, 0, (1/3).sqrt),n1,n2,n3,n4;
+var i1=0,i2=0,i3=0,i4=0;
+
+r=[1/2,2/3,3/4].normalizeSum;
+
+v1=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+
+~axis5=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+
+	~posc1 = 10000.collect{
+		angle1=((360-(360/1.6180339887499)));
+		q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis5.[i1].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis5.[i1].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis5.[i1].[2].sqrt);
+	i1=i1+1;
+	v1=q1*v1*q1.conjugate;
+	ph1=(v1.a*m).round(0.0001);
+	};
+~posc2 = 10000.collect{
+		angle2=((360-(360/1.6180339887499)));
+		q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis5.[i2].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis5.[i2].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis5.[i2].[2].sqrt);
+	i2=i2+1;
+	v2=q2*v2*q2.conjugate;
+	ph2=(v2.b*m).round(0.0001);
+	};
+
+~posc3 = 10000.collect{
+		angle3=((360-(360/1.6180339887499)));
+		q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis5.[i3].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis5.[i3].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis5.[i3].[2].sqrt);
+	i3=i3+1;
+	v3=q3*v3*q3.conjugate;
+	ph3=(v3.c*m).round(0.0001);
+	};
+
+~posc4 = 10000.collect{
+		angle4=((360-(360/1.6180339887499)));
+		q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis5.[i4].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis5.[i4].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis5.[i4].[2].sqrt);
+	i4=i4+1;
+	v4=q4*v4*q4.conjugate;
+	ph4=(v4.d*m).round(0.0001);
+
+	};
+
+);
+(
+var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
+var i = Quaternion(0, (1/3).sqrt, 0, 0),j = Quaternion(0, 0, (1/3).sqrt, 0),k = Quaternion(0, 0, 0, (1/3).sqrt),n1,n2,n3,n4;
+var i1=0,i2=0,i3=0,i4=0;
+
+r=[1/2,2/3,3/4].normalizeSum;
+
+v1=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+
+~axis6=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+
+	~posd1 = 10000.collect{
+		angle1=((360-(360/1.6180339887499)));
+		q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis6.[i1].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis6.[i1].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis6.[i1].[2].sqrt);
+	i1=i1+1;
+	v1=q1*v1*q1.conjugate;
+	ph1=(v1.a*m).round(0.0001);
+	};
+~posd2 = 10000.collect{
+		angle2=((360-(360/1.6180339887499)));
+		q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis6.[i2].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis6.[i2].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis6.[i2].[2].sqrt);
+	i2=i2+1;
+	v2=q2*v2*q2.conjugate;
+	ph2=(v2.b*m).round(0.0001);
+	};
+
+~posd3 = 10000.collect{
+		angle3=((360-(360/1.6180339887499)));
+		q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis6.[i3].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis6.[i3].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis6.[i3].[2].sqrt);
+	i3=i3+1;
+	v3=q3*v3*q3.conjugate;
+	ph3=(v3.c*m).round(0.0001);
+	};
+
+~posd4 = 10000.collect{
+		angle4=((360-(360/1.6180339887499)));
+		q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
+		i=Quaternion(0,~axis6.[i4].[0].sqrt,0,0);
+	j=Quaternion(0,0,~axis6.[i4].[1].sqrt,0);
+	k=Quaternion(0,0,0,~axis6.[i4].[2].sqrt);
+	i4=i4+1;
+	v4=q4*v4*q4.conjugate;
+	ph4=(v4.d*m).round(0.0001);
+
+	};
+
+)
 )
 
 
@@ -449,9 +558,9 @@ b=Pdef(\2, Pbind(\instrument, \ob,
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
 	\coef,Pexprand(0.0001,0.1,inf),
-	\x,Pbrown(0,1,0.1,inf),
-	\y,Pbrown(0,1,0.1,inf),
-	\z,Pbrown(0,1,0.1,inf),
+	\x,Pseq(~posb1,inf),
+	\y,Pseq(~posb2,inf),
+	\z,Pseq(~posb3,inf),
 	\rx,Pbrown(0,1,0.1,inf),
 	\ry,Pbrown(0,1,0.1,inf),
 	\rz,Pbrown(0,1,0.1,inf),
@@ -473,9 +582,9 @@ c=Pdef(\3, Pbind(\instrument, \oc,
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
 	\coef,Pexprand(0.0001,0.1,inf),
-	\x,Pbrown(0,1,0.1,inf),
-	\y,Pbrown(0,1,0.1,inf),
-	\z,Pbrown(0,1,0.1,inf),
+	\x,Pseq(~posc1,inf),
+	\y,Pseq(~posc2,inf),
+	\z,Pseq(~posc3,inf),
 	\rx,Pbrown(0,1,0.1,inf),
 	\ry,Pbrown(0,1,0.1,inf),
 	\rz,Pbrown(0,1,0.1,inf),
@@ -497,9 +606,9 @@ d=Pdef(\4, Pbind(\instrument, \od,
 	\cutt,Pbrown(220*2,220*8,100,inf),
 	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
 	\coef,Pexprand(0.0001,0.1,inf),
-	\x,Pbrown(0,1,0.1,inf),
-	\y,Pbrown(0,1,0.1,inf),
-	\z,Pbrown(0,1,0.1,inf),
+	\x,Pseq(~posd1,inf),
+	\y,Pseq(~posd2,inf),
+	\z,Pseq(~posd3,inf),
 	\rx,Pbrown(0,1,0.1,inf),
 	\ry,Pbrown(0,1,0.1,inf),
 	\rz,Pbrown(0,1,0.1,inf),
