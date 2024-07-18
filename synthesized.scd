@@ -190,7 +190,7 @@ m=m+1;
 
 
 (
-(
+/*(
 var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=2;
 var i = Quaternion(0, (1/3).sqrt, 0, 0),j = Quaternion(0, 0, (1/3).sqrt, 0),k = Quaternion(0, 0, 0, (1/3).sqrt);
 var i1=0,i2=0,i3=0,i4=0;
@@ -307,7 +307,7 @@ v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
 	ph4=(v4.d*m).round(1);
 
 	};
-);
+);*/
 (
 var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
 var i = Quaternion(0, 0, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 1),n1,n2,n3,n4;
@@ -320,9 +320,8 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
-~axis4=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
-	~posb1 = 10000.collect{
+	~pos1 = 10000.collect{
 		angle1=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis4.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis4.[i1].[1].sqrt,0);
@@ -332,7 +331,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(0.0001);
 	};
-~posb2 = 10000.collect{
+~pos2 = 10000.collect{
 		angle2=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis4.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis4.[i2].[1].sqrt,0);
@@ -343,7 +342,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(0.0001);
 	};
 
-~posb3 = 10000.collect{
+~pos3 = 10000.collect{
 		angle3=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis4.[i3].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis4.[i3].[1].sqrt,0);
@@ -354,129 +353,11 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(0.0001);
 	};
 
-~posb4 = 10000.collect{
+~pos4 = 10000.collect{
 		angle4=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis4.[i4].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis4.[i4].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis4.[i4].[2].sqrt);
-	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
-	i4=i4+1;
-	v4=q4*v4*q4.conjugate;
-	ph4=(v4.d*m).round(0.0001);
-
-	};
-
-);
-(
-var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
-var i = Quaternion(0, 0, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 1),n1,n2,n3,n4;
-var i1=0,i2=0,i3=0,i4=0;
-
-r=[1,0,0].normalizeSum;
-
-v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
-v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
-v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
-v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
-
-~axis5=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
-
-	~posc1 = 10000.collect{
-		angle1=((360-(360/1.6180339887499)));
-//			i=Quaternion(0,~axis5.[i1].[0].sqrt,0,0);
-//		j=Quaternion(0,0,~axis5.[i1].[1].sqrt,0);
-//		k=Quaternion(0,0,0,~axis5.[i1].[2].sqrt);
-	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
-	i1=i1+1;
-	v1=q1*v1*q1.conjugate;
-	ph1=(v1.a*m).round(0.0001);
-	};
-~posc2 = 10000.collect{
-		angle2=((360-(360/1.6180339887499)));
-//			i=Quaternion(0,~axis5.[i2].[0].sqrt,0,0);
-//		j=Quaternion(0,0,~axis5.[i2].[1].sqrt,0);
-//		k=Quaternion(0,0,0,~axis5.[i2].[2].sqrt);
-	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
-	i2=i2+1;
-	v2=q2*v2*q2.conjugate;
-	ph2=(v2.b*m).round(0.0001);
-	};
-
-~posc3 = 10000.collect{
-		angle3=((360-(360/1.6180339887499)));
-//			i=Quaternion(0,~axis5.[i3].[0].sqrt,0,0);
-//		j=Quaternion(0,0,~axis5.[i3].[1].sqrt,0);
-//		k=Quaternion(0,0,0,~axis5.[i3].[2].sqrt);
-	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
-	i3=i3+1;
-	v3=q3*v3*q3.conjugate;
-	ph3=(v3.c*m).round(0.0001);
-	};
-
-~posc4 = 10000.collect{
-		angle4=((360-(360/1.6180339887499)));
-//			i=Quaternion(0,~axis5.[i4].[0].sqrt,0,0);
-//		j=Quaternion(0,0,~axis5.[i4].[1].sqrt,0);
-//		k=Quaternion(0,0,0,~axis5.[i4].[2].sqrt);
-	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
-	i4=i4+1;
-	v4=q4*v4*q4.conjugate;
-	ph4=(v4.d*m).round(0.0001);
-
-	};
-
-);
-(
-var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
-var i = Quaternion(0, 0, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 1),n1,n2,n3,n4;
-var i1=0,i2=0,i3=0,i4=0;
-
-r=[1,0,0].normalizeSum;
-
-v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
-v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
-v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
-v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
-
-~axis6=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
-
-	~posd1 = 10000.collect{
-		angle1=((360-(360/1.6180339887499)));
-//			i=Quaternion(0,~axis6.[i1].[0].sqrt,0,0);
-//		j=Quaternion(0,0,~axis6.[i1].[1].sqrt,0);
-//		k=Quaternion(0,0,0,~axis6.[i1].[2].sqrt);
-	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
-	i1=i1+1;
-	v1=q1*v1*q1.conjugate;
-	ph1=(v1.a*m).round(0.0001);
-	};
-~posd2 = 10000.collect{
-		angle2=((360-(360/1.6180339887499)));
-//			i=Quaternion(0,~axis6.[i2].[0].sqrt,0,0);
-//		j=Quaternion(0,0,~axis6.[i2].[1].sqrt,0);
-//		k=Quaternion(0,0,0,~axis6.[i2].[2].sqrt);
-	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
-	i2=i2+1;
-	v2=q2*v2*q2.conjugate;
-	ph2=(v2.b*m).round(0.0001);
-	};
-
-~posd3 = 10000.collect{
-		angle3=((360-(360/1.6180339887499)));
-//			i=Quaternion(0,~axis6.[i3].[0].sqrt,0,0);
-//		j=Quaternion(0,0,~axis6.[i3].[1].sqrt,0);
-//		k=Quaternion(0,0,0,~axis6.[i3].[2].sqrt);
-	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
-	i3=i3+1;
-	v3=q3*v3*q3.conjugate;
-	ph3=(v3.c*m).round(0.0001);
-	};
-
-~posd4 = 10000.collect{
-		angle4=((360-(360/1.6180339887499)));
-//			i=Quaternion(0,~axis6.[i4].[0].sqrt,0,0);
-//		j=Quaternion(0,0,~axis6.[i4].[1].sqrt,0);
-//		k=Quaternion(0,0,0,~axis6.[i4].[2].sqrt);
 	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
 	i4=i4+1;
 	v4=q4*v4*q4.conjugate;
@@ -497,6 +378,64 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
+
+	~rot1 = 10000.collect{
+		angle1=((360-(360/1.6180339887499)));
+//		i=Quaternion(0,~axis9.[i1].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis9.[i1].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis9.[i1].[2].sqrt);
+	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
+	i1=i1+1;
+	v1=q1*v1*q1.conjugate;
+	ph1=(v1.a*m).round(0.0001);
+	};
+~rot2 = 10000.collect{
+		angle2=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis9.[i2].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis9.[i2].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis9.[i2].[2].sqrt);
+	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
+	i2=i2+1;
+	v2=q2*v2*q2.conjugate;
+	ph2=(v2.b*m).round(0.0001);
+	};
+
+~rot3 = 10000.collect{
+		angle3=((360-(360/1.6180339887499)));
+	//		i=Quaternion(0,~axis9.[i3].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis9.[i3].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis9.[i3].[2].sqrt);
+	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
+	i3=i3+1;
+	v3=q3*v3*q3.conjugate;
+	ph3=(v3.c*m).round(0.0001);
+	};
+
+~rot4 = 10000.collect{
+		angle4=((360-(360/1.6180339887499)));
+	//	i=Quaternion(0,~axis9.[i4].[0].sqrt,0,0);
+	//j=Quaternion(0,0,~axis9.[i4].[1].sqrt,0);
+//	k=Quaternion(0,0,0,~axis9.[i4].[2].sqrt);
+	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
+	i4=i4+1;
+	v4=q4*v4*q4.conjugate;
+	ph4=(v4.d*m).round(0.0001);
+
+	};
+
+)
+(
+var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
+var i = Quaternion(0, 1, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 0),n1,n2,n3,n4;
+var i1=0,i2=0,i3=0,i4=0;
+
+r=[0,0,1].normalizeSum;
+
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+
 ~axis7=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
 	~rotb1 = 10000.collect{
@@ -504,6 +443,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //			i=Quaternion(0,~axis7.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis7.[i1].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis7.[i1].[2].sqrt);
+		i=Quaternion(0,~pos2.[i1],0,0);
+	j=Quaternion(0,0,~pos3.[i1],0);
+	k=Quaternion(0,0,0,~pos4.[i1]);
 	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
 	i1=i1+1;
 	v1=q1*v1*q1.conjugate;
@@ -514,6 +456,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //			i=Quaternion(0,~axis7.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis7.[i2].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis7.[i2].[2].sqrt);
+			i=Quaternion(0,~pos2.[i2],0,0);
+	j=Quaternion(0,0,~pos3.[i2],0);
+	k=Quaternion(0,0,0,~pos4.[i2]);
 	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
 	i2=i2+1;
 	v2=q2*v2*q2.conjugate;
@@ -525,6 +470,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //			i=Quaternion(0,~axis7.[i3].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis7.[i3].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis7.[i3].[2].sqrt);
+			i=Quaternion(0,~pos2.[i3],0,0);
+	j=Quaternion(0,0,~pos3.[i3],0);
+	k=Quaternion(0,0,0,~pos4.[i3]);
 	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
 	i3=i3+1;
 	v3=q3*v3*q3.conjugate;
@@ -536,6 +484,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //			i=Quaternion(0,~axis7.[i4].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis7.[i4].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis7.[i4].[2].sqrt);
+			i=Quaternion(0,~pos2.[i4],0,0);
+	j=Quaternion(0,0,~pos3.[i4],0);
+	k=Quaternion(0,0,0,~pos4.[i4]);
 	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
 	i4=i4+1;
 	v4=q4*v4*q4.conjugate;
@@ -563,6 +514,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //			i=Quaternion(0,~axis8.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis8.[i1].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis8.[i1].[2].sqrt);
+			i=Quaternion(0,~pos2.[i1],0,0);
+	j=Quaternion(0,0,~pos3.[i1],0);
+	k=Quaternion(0,0,0,~pos4.[i1]);
 	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
 	i1=i1+1;
 	v1=q1*v1*q1.conjugate;
@@ -573,6 +527,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //			i=Quaternion(0,~axis8.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis8.[i2].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis8.[i2].[2].sqrt);
+			i=Quaternion(0,~pos2.[i2],0,0);
+	j=Quaternion(0,0,~pos3.[i2],0);
+	k=Quaternion(0,0,0,~pos4.[i2]);
 	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
 	i2=i2+1;
 	v2=q2*v2*q2.conjugate;
@@ -584,6 +541,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //			i=Quaternion(0,~axis8.[i3].[0].sqrt,0,0);
 //	j=Quaternion(0,0,~axis8.[i3].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis8.[i3].[2].sqrt);
+			i=Quaternion(0,~pos2.[i3],0,0);
+	j=Quaternion(0,0,~pos3.[i3],0);
+	k=Quaternion(0,0,0,~pos4.[i3]);
 	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
 	i3=i3+1;
 	v3=q3*v3*q3.conjugate;
@@ -595,6 +555,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //			i=Quaternion(0,~axis8.[i4].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis8.[i4].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis8.[i4].[2].sqrt);
+			i=Quaternion(0,~pos2.[i4],0,0);
+	j=Quaternion(0,0,~pos3.[i4],0);
+	k=Quaternion(0,0,0,~pos4.[i4]);
 	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
 	i4=i4+1;
 	v4=q4*v4*q4.conjugate;
@@ -622,6 +585,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //		i=Quaternion(0,~axis9.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis9.[i1].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis9.[i1].[2].sqrt);
+				i=Quaternion(0,~pos2.[i1],0,0);
+	j=Quaternion(0,0,~pos3.[i1],0);
+	k=Quaternion(0,0,0,~pos4.[i1]);
 	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
 	i1=i1+1;
 	v1=q1*v1*q1.conjugate;
@@ -632,6 +598,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 //			i=Quaternion(0,~axis9.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis9.[i2].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis9.[i2].[2].sqrt);
+				i=Quaternion(0,~pos2.[i2],0,0);
+	j=Quaternion(0,0,~pos3.[i2],0);
+	k=Quaternion(0,0,0,~pos4.[i2]);
 	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
 	i2=i2+1;
 	v2=q2*v2*q2.conjugate;
@@ -643,6 +612,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	//		i=Quaternion(0,~axis9.[i3].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis9.[i3].[1].sqrt,0);
 //		k=Quaternion(0,0,0,~axis9.[i3].[2].sqrt);
+				i=Quaternion(0,~pos2.[i3],0,0);
+	j=Quaternion(0,0,~pos3.[i3],0);
+	k=Quaternion(0,0,0,~pos4.[i3]);
 	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
 	i3=i3+1;
 	v3=q3*v3*q3.conjugate;
@@ -654,6 +626,222 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	//	i=Quaternion(0,~axis9.[i4].[0].sqrt,0,0);
 	//j=Quaternion(0,0,~axis9.[i4].[1].sqrt,0);
 //	k=Quaternion(0,0,0,~axis9.[i4].[2].sqrt);
+				i=Quaternion(0,~pos2.[i4],0,0);
+	j=Quaternion(0,0,~pos3.[i4],0);
+	k=Quaternion(0,0,0,~pos4.[i4]);
+	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
+	i4=i4+1;
+	v4=q4*v4*q4.conjugate;
+	ph4=(v4.d*m).round(0.0001);
+
+	};
+
+);
+(
+var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
+var i = Quaternion(0, 0, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 1),n1,n2,n3,n4;
+var i1=0,i2=0,i3=0,i4=0;
+
+r=[1,0,0].normalizeSum;
+
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+
+~axis4=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+
+	~posb1 = 10000.collect{
+		angle1=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis4.[i1].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis4.[i1].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis4.[i1].[2].sqrt);
+		i=Quaternion(0,~rot2.[i1],0,0);
+	j=Quaternion(0,0,~rot3.[i1],0);
+	k=Quaternion(0,0,0,~rot4.[i1]);
+	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
+	i1=i1+1;
+	v1=q1*v1*q1.conjugate;
+	ph1=(v1.a*m).round(0.0001);
+	};
+~posb2 = 10000.collect{
+		angle2=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis4.[i2].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis4.[i2].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis4.[i2].[2].sqrt);
+		i=Quaternion(0,~rot2.[i2],0,0);
+	j=Quaternion(0,0,~rot3.[i2],0);
+	k=Quaternion(0,0,0,~rot4.[i2]);
+	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
+	i2=i2+1;
+	v2=q2*v2*q2.conjugate;
+	ph2=(v2.b*m).round(0.0001);
+	};
+
+~posb3 = 10000.collect{
+		angle3=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis4.[i3].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis4.[i3].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis4.[i3].[2].sqrt);
+		i=Quaternion(0,~rot2.[i3],0,0);
+	j=Quaternion(0,0,~rot3.[i3],0);
+	k=Quaternion(0,0,0,~rot4.[i3]);
+	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
+	i3=i3+1;
+	v3=q3*v3*q3.conjugate;
+	ph3=(v3.c*m).round(0.0001);
+	};
+
+~posb4 = 10000.collect{
+		angle4=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis4.[i4].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis4.[i4].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis4.[i4].[2].sqrt);
+		i=Quaternion(0,~rot2.[i4],0,0);
+	j=Quaternion(0,0,~rot3.[i4],0);
+	k=Quaternion(0,0,0,~rot4.[i4]);
+	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
+	i4=i4+1;
+	v4=q4*v4*q4.conjugate;
+	ph4=(v4.d*m).round(0.0001);
+
+	};
+
+);
+(
+var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
+var i = Quaternion(0, 0, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 1),n1,n2,n3,n4;
+var i1=0,i2=0,i3=0,i4=0;
+
+r=[1,0,0].normalizeSum;
+
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+
+~axis5=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+
+	~posc1 = 10000.collect{
+		angle1=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis5.[i1].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis5.[i1].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis5.[i1].[2].sqrt);
+		i=Quaternion(0,~rot2.[i1],0,0);
+	j=Quaternion(0,0,~rot3.[i1],0);
+	k=Quaternion(0,0,0,~rot4.[i1]);
+	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
+	i1=i1+1;
+	v1=q1*v1*q1.conjugate;
+	ph1=(v1.a*m).round(0.0001);
+	};
+~posc2 = 10000.collect{
+		angle2=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis5.[i2].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis5.[i2].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis5.[i2].[2].sqrt);
+		i=Quaternion(0,~rot2.[i2],0,0);
+	j=Quaternion(0,0,~rot3.[i2],0);
+	k=Quaternion(0,0,0,~rot4.[i2]);
+	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
+	i2=i2+1;
+	v2=q2*v2*q2.conjugate;
+	ph2=(v2.b*m).round(0.0001);
+	};
+
+~posc3 = 10000.collect{
+		angle3=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis5.[i3].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis5.[i3].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis5.[i3].[2].sqrt);
+		i=Quaternion(0,~rot2.[i3],0,0);
+	j=Quaternion(0,0,~rot3.[i3],0);
+	k=Quaternion(0,0,0,~rot4.[i3]);
+	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
+	i3=i3+1;
+	v3=q3*v3*q3.conjugate;
+	ph3=(v3.c*m).round(0.0001);
+	};
+
+~posc4 = 10000.collect{
+		angle4=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis5.[i4].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis5.[i4].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis5.[i4].[2].sqrt);
+		i=Quaternion(0,~rot2.[i4],0,0);
+	j=Quaternion(0,0,~rot3.[i4],0);
+	k=Quaternion(0,0,0,~rot4.[i4]);
+	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
+	i4=i4+1;
+	v4=q4*v4*q4.conjugate;
+	ph4=(v4.d*m).round(0.0001);
+
+	};
+
+);
+(
+var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4,r,m=1;
+var i = Quaternion(0, 0, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 1),n1,n2,n3,n4;
+var i1=0,i2=0,i3=0,i4=0;
+
+r=[1,0,0].normalizeSum;
+
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+
+~axis6=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+
+	~posd1 = 10000.collect{
+		angle1=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis6.[i1].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis6.[i1].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis6.[i1].[2].sqrt);
+		i=Quaternion(0,~rot2.[i1],0,0);
+	j=Quaternion(0,0,~rot3.[i1],0);
+	k=Quaternion(0,0,0,~rot4.[i1]);
+	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
+	i1=i1+1;
+	v1=q1*v1*q1.conjugate;
+	ph1=(v1.a*m).round(0.0001);
+	};
+~posd2 = 10000.collect{
+		angle2=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis6.[i2].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis6.[i2].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis6.[i2].[2].sqrt);
+		i=Quaternion(0,~rot2.[i2],0,0);
+	j=Quaternion(0,0,~rot3.[i2],0);
+	k=Quaternion(0,0,0,~rot4.[i2]);
+	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
+	i2=i2+1;
+	v2=q2*v2*q2.conjugate;
+	ph2=(v2.b*m).round(0.0001);
+	};
+
+~posd3 = 10000.collect{
+		angle3=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis6.[i3].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis6.[i3].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis6.[i3].[2].sqrt);
+		i=Quaternion(0,~rot2.[i3],0,0);
+	j=Quaternion(0,0,~rot3.[i3],0);
+	k=Quaternion(0,0,0,~rot4.[i3]);
+	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
+	i3=i3+1;
+	v3=q3*v3*q3.conjugate;
+	ph3=(v3.c*m).round(0.0001);
+	};
+
+~posd4 = 10000.collect{
+		angle4=((360-(360/1.6180339887499)));
+//			i=Quaternion(0,~axis6.[i4].[0].sqrt,0,0);
+//		j=Quaternion(0,0,~axis6.[i4].[1].sqrt,0);
+//		k=Quaternion(0,0,0,~axis6.[i4].[2].sqrt);
+		i=Quaternion(0,~rot2.[i4],0,0);
+	j=Quaternion(0,0,~rot3.[i4],0);
+	k=Quaternion(0,0,0,~rot4.[i4]);
 	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
 	i4=i4+1;
 	v4=q4*v4*q4.conjugate;
@@ -678,9 +866,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 	~phase1 = 10000.collect{
 		angle1=((360-(360/1.6180339887499)));
-	i=Quaternion(0,~rotd2.[i1],0,0);
-	j=Quaternion(0,0,~rotd3.[i1],0);
-	k=Quaternion(0,0,0,~rotd4.[i1]);
+	i=Quaternion(0,~rot2.[i1],0,0);
+	j=Quaternion(0,0,~rot3.[i1],0);
+	k=Quaternion(0,0,0,~rot4.[i1]);
 	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
 	i1=i1+1;
 	v1=q1*v1*q1.conjugate;
@@ -689,9 +877,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~phase2 = 10000.collect{
 		angle2=((360-(360/1.6180339887499)));
-	i=Quaternion(0,~rotd2.[i2],0,0);
-	j=Quaternion(0,0,~rotd3.[i2],0);
-	k=Quaternion(0,0,0,~rotd4.[i2]);
+	i=Quaternion(0,~rot2.[i2],0,0);
+	j=Quaternion(0,0,~rot3.[i2],0);
+	k=Quaternion(0,0,0,~rot4.[i2]);
 	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
 	i2=i2+1;
 	v2=q2*v2*q2.conjugate;
@@ -700,9 +888,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~phase3 = 10000.collect{
 		angle3=((360-(360/1.6180339887499)));
-	i=Quaternion(0,~rotd2.[i3],0,0);
-	j=Quaternion(0,0,~rotd3.[i3],0);
-	k=Quaternion(0,0,0,~rotd4.[i3]);
+	i=Quaternion(0,~rot2.[i3],0,0);
+	j=Quaternion(0,0,~rot3.[i3],0);
+	k=Quaternion(0,0,0,~rot4.[i3]);
 	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
 	i3=i3+1;
 	v3=q3*v3*q3.conjugate;
@@ -712,9 +900,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~phase4 = 10000.collect{
 		angle4=((360-(360/1.6180339887499)));
-	i=Quaternion(0,~rotd2.[i4],0,0);
-	j=Quaternion(0,0,~rotd3.[i4],0);
-	k=Quaternion(0,0,0,~rotd4.[i4]);
+	i=Quaternion(0,~rot2.[i4],0,0);
+	j=Quaternion(0,0,~rot3.[i4],0);
+	k=Quaternion(0,0,0,~rot4.[i4]);
 	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
 	i4=i4+1;
 	v4=q4*v4*q4.conjugate;
@@ -738,9 +926,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 	~n1 = 10000.collect{
 		angle1=((360-(360/1.6180339887499)));
-	i=Quaternion(0,~rotd2.[i1],0,0);
-	j=Quaternion(0,0,~rotd3.[i1],0);
-	k=Quaternion(0,0,0,~rotd4.[i1]);
+	i=Quaternion(0,~rot2.[i1],0,0);
+	j=Quaternion(0,0,~rot3.[i1],0);
+	k=Quaternion(0,0,0,~rot4.[i1]);
 	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
 	i1=i1+1;
 	v1=q1*v1*q1.conjugate;
@@ -748,9 +936,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	};
 ~n2 = 10000.collect{
 		angle2=((360-(360/1.6180339887499)));
-	i=Quaternion(0,~rotd2.[i2],0,0);
-	j=Quaternion(0,0,~rotd3.[i2],0);
-	k=Quaternion(0,0,0,~rotd4.[i2]);
+	i=Quaternion(0,~rot2.[i2],0,0);
+	j=Quaternion(0,0,~rot3.[i2],0);
+	k=Quaternion(0,0,0,~rot4.[i2]);
 	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
 	i2=i2+1;
 	v2=q2*v2*q2.conjugate;
@@ -759,9 +947,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~n3 = 10000.collect{
 		angle3=((360-(360/1.6180339887499)));
-	i=Quaternion(0,~rotd2.[i3],0,0);
-	j=Quaternion(0,0,~rotd3.[i3],0);
-	k=Quaternion(0,0,0,~rotd4.[i3]);
+	i=Quaternion(0,~rot2.[i3],0,0);
+	j=Quaternion(0,0,~rot3.[i3],0);
+	k=Quaternion(0,0,0,~rot4.[i3]);
 	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
 	i3=i3+1;
 	v3=q3*v3*q3.conjugate;
@@ -770,9 +958,9 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~n4 = 10000.collect{
 		angle4=((360-(360/1.6180339887499)));
-	i=Quaternion(0,~rotd2.[i4],0,0);
-	j=Quaternion(0,0,~rotd3.[i4],0);
-	k=Quaternion(0,0,0,~rotd4.[i4]);
+	i=Quaternion(0,~rot2.[i4],0,0);
+	j=Quaternion(0,0,~rot3.[i4],0);
+	k=Quaternion(0,0,0,~rot4.[i4]);
 	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
 	i4=i4+1;
 	v4=q4*v4*q4.conjugate;
