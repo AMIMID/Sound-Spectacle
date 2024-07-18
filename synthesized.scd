@@ -311,12 +311,12 @@ var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4
 var i = Quaternion(0, 0, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 1),n1,n2,n3,n4;
 var i1=0,i2=0,i3=0,i4=0;
 
-r=[1/2,2/3,3/4].normalizeSum;
+r=[1,0,0].normalizeSum;
 
-v1=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~axis4=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
@@ -370,12 +370,12 @@ var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4
 var i = Quaternion(0, 0, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 1),n1,n2,n3,n4;
 var i1=0,i2=0,i3=0,i4=0;
 
-r=[1/2,2/3,3/4].normalizeSum;
+r=[1,0,0].normalizeSum;
 
-v1=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~axis5=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
@@ -429,12 +429,12 @@ var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4
 var i = Quaternion(0, 0, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 1),n1,n2,n3,n4;
 var i1=0,i2=0,i3=0,i4=0;
 
-r=[1/2,2/3,3/4].normalizeSum;
+r=[1,0,0].normalizeSum;
 
-v1=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~axis6=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
@@ -488,12 +488,12 @@ var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4
 var i = Quaternion(0, 1, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 0),n1,n2,n3,n4;
 var i1=0,i2=0,i3=0,i4=0;
 
-r=[1/2,2/3,3/4].normalizeSum;
+r=[0,0,1].normalizeSum;
 
-v1=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~axis7=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
@@ -547,12 +547,12 @@ var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4
 var i = Quaternion(0, 1, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 0),n1,n2,n3,n4;
 var i1=0,i2=0,i3=0,i4=0;
 
-r=[1/2,2/3,3/4].normalizeSum;
+r=[0,0,1].normalizeSum;
 
-v1=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~axis8=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
@@ -606,12 +606,12 @@ var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4
 var i = Quaternion(0, 1, 0, 0),j = Quaternion(0, 0, 0, 0),k = Quaternion(0, 0, 0, 0),n1,n2,n3,n4;
 var i1=0,i2=0,i3=0,i4=0;
 
-r=[1/2,2/3,3/4].normalizeSum;
+r=[0,0,1].normalizeSum;
 
-v1=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v2=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v3=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
-v4=Quaternion(0,r.[0].sqrt.neg,r.[1].sqrt,r.[2].sqrt);
+v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
+v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 ~axis9=10000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
