@@ -726,7 +726,7 @@ var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4
 var i = Quaternion(0, (1/3).sqrt, 0, 0),j = Quaternion(0, 0, (1/3).sqrt, 0),k = Quaternion(0, 0, 0, (1/3).sqrt);
 var i1=0,i2=0,i3=0,i4=0;
 
-r=[1,0,0].normalizeSum;
+r=[3,2,1].normalizeSum;
 
 v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
@@ -786,7 +786,7 @@ var  angle1=0,angle2=0,angle3=0,angle4=0,q1,q2,q3,q4,v1,v2,v3,v4,ph1,ph2,ph3,ph4
 var i = Quaternion(0, (1/3).sqrt, 0, 0),j = Quaternion(0, 0, (1/3).sqrt, 0),k = Quaternion(0, 0, 0, (1/3).sqrt),n1,n2,n3,n4;
 var i1=0,i2=0,i3=0,i4=0;
 
-r=[1,0,0].normalizeSum;
+r=[3,2,1].normalizeSum;
 
 v1=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
