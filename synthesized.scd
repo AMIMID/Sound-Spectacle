@@ -36,7 +36,7 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist
 
 	var out = NamedControl.kr(\out, [0, 1, 2, 3]);  // multiple buses!
 
-	r1=[rx,ry,rz].normalizeSum;
+	r1=[rx,ry,rz];
 
 	i = Quaternion(0, r1.[0].sqrt, 0, 0);
 	j = Quaternion(0, 0,r1.[1].sqrt, 0);
@@ -45,7 +45,7 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist
 
 	p=[x,y,z];
 
-	va=Quaternion(0,p.[0],p.[1],p.[2]);
+	va=Quaternion(0,p.[0].sqrt,p.[1].sqrt,p.[2].sqrt);
 
 	bank=16;
 	pitch=2.pow(n1/(2*6));
@@ -89,7 +89,7 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist
 
 	var out = NamedControl.kr(\out, [0, 1, 2, 3]);  // multiple buses!
 
-	r1=[rx,ry,rz].normalizeSum;
+	r1=[rx,ry,rz];
 
 	i = Quaternion(0, r1.[0].sqrt, 0, 0);
 	j = Quaternion(0, 0,r1.[1].sqrt, 0);
@@ -98,7 +98,7 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist
 
 	p=[x,y,z];
 
-	va=Quaternion(0,p.[0],p.[1],p.[2]);
+	va=Quaternion(0,p.[0].sqrt,p.[1].sqrt,p.[2].sqrt);
 
 	bank=16;
 	pitch=2.pow(n1/(2*6));
@@ -142,7 +142,7 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist
 
 	var out = NamedControl.kr(\out, [0, 1, 2, 3]);  // multiple buses!
 
-	r1=[rx,ry,rz].normalizeSum;
+	r1=[rx,ry,rz];
 
 	i = Quaternion(0, r1.[0].sqrt, 0, 0);
 	j = Quaternion(0, 0,r1.[1].sqrt, 0);
@@ -151,7 +151,7 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist
 
 	p=[x,y,z];
 
-	va=Quaternion(0,p.[0],p.[1],p.[2]);
+	va=Quaternion(0,p.[0].sqrt,p.[1].sqrt,p.[2].sqrt);
 
 	bank=16;
 	pitch=2.pow(n1/(2*6));
@@ -716,7 +716,7 @@ d=Pdef(\4, Pbind(\instrument, \od,
 	\rx,Pseq(~rotd2,inf),
 	\ry,Pseq(~rotd3,inf),
 	\rz,Pseq(~rotd4,inf),
-	//\dist,Pgauss(0.2,0.1,inf),
+	\dist,Pgauss(0.2,0.1,inf),
 	\decay,Pbrown(2,8,1,inf);
 ));
 )
