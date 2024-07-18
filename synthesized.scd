@@ -687,7 +687,7 @@ b=Pdef(\2, Pbind(\instrument, \ob,
 	\rx,Pseq(~rotb2,inf),
 	\ry,Pseq(~rotb3,inf),
 	\rz,Pseq(~rotb4,inf),
-	\dist,Pgauss(0.2,0.1,inf),
+	//\dist,Pgauss(0.2,0.1,inf),
 	\decay,Pbrown(2,8,1,inf);
 ));
 c=Pdef(\3, Pbind(\instrument, \oc,
@@ -703,7 +703,7 @@ c=Pdef(\3, Pbind(\instrument, \oc,
 	\rx,Pseq(~rotc2,inf),
 	\ry,Pseq(~rotc3,inf),
 	\rz,Pseq(~rotc4,inf),
-	\dist,Pgauss(0.2,0.1,inf),
+	//\dist,Pgauss(0.2,0.1,inf),
 	\decay,Pbrown(2,8,1,inf);
 ));
 d=Pdef(\4, Pbind(\instrument, \od,
@@ -719,7 +719,7 @@ d=Pdef(\4, Pbind(\instrument, \od,
 	\rx,Pseq(~rotd2,inf),
 	\ry,Pseq(~rotd3,inf),
 	\rz,Pseq(~rotd4,inf),
-	\dist,Pgauss(0.2,0.1,inf),
+	//\dist,Pgauss(0.2,0.1,inf),
 	\decay,Pbrown(2,8,1,inf);
 ));
 )
