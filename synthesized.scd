@@ -279,14 +279,14 @@ v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 
-	~pos1 = 1000.collect{
+	~pos1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
 	i1=i1+1;
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(0.0001);
 	};
-~pos2 = 1000.collect{
+~pos2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
 	i2=i2+1;
@@ -294,7 +294,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(0.0001);
 	};
 
-~pos3 = 1000.collect{
+~pos3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
 	i3=i3+1;
@@ -302,7 +302,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(0.0001);
 	};
 
-~pos4 = 1000.collect{
+~pos4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
 	i4=i4+1;
@@ -325,14 +325,14 @@ v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 
-	~rot1 = 1000.collect{
+	~rot1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 	q1=(cos(angle1.degrad/2)+(sin(angle1.degrad/2)*(i+j+k)));
 	i1=i1+1;
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(0.0001);
 	};
-~rot2 = 1000.collect{
+~rot2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 	q2=(cos(angle2.degrad/2)+(sin(angle2.degrad/2)*(i+j+k)));
 	i2=i2+1;
@@ -340,7 +340,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(0.0001);
 	};
 
-~rot3 = 1000.collect{
+~rot3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 	q3=(cos(angle3.degrad/2)+(sin(angle3.degrad/2)*(i+j+k)));
 	i3=i3+1;
@@ -348,7 +348,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(0.0001);
 	};
 
-~rot4 = 1000.collect{
+~rot4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 	q4=(cos(angle4.degrad/2)+(sin(angle4.degrad/2)*(i+j+k)));
 	i4=i4+1;
@@ -370,9 +370,9 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
-~axis7=1000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis7=100.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
-	~rotb1 = 1000.collect{
+	~rotb1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis7.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis7.[i1].[1].sqrt,0);
@@ -385,7 +385,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(0.0001);
 	};
-~rotb2 = 1000.collect{
+~rotb2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis7.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis7.[i2].[1].sqrt,0);
@@ -399,7 +399,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(0.0001);
 	};
 
-~rotb3 = 1000.collect{
+~rotb3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis7.[i3].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis7.[i3].[1].sqrt,0);
@@ -413,7 +413,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(0.0001);
 	};
 
-~rotb4 = 1000.collect{
+~rotb4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis7.[i4].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis7.[i4].[1].sqrt,0);
@@ -441,9 +441,9 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
-~axis8=1000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis8=100.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
-	~rotc1 = 1000.collect{
+	~rotc1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis8.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis8.[i1].[1].sqrt,0);
@@ -456,7 +456,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(0.0001);
 	};
-~rotc2 = 1000.collect{
+~rotc2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis8.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis8.[i2].[1].sqrt,0);
@@ -470,7 +470,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(0.0001);
 	};
 
-~rotc3 = 1000.collect{
+~rotc3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis8.[i3].[0].sqrt,0,0);
 //	j=Quaternion(0,0,~axis8.[i3].[1].sqrt,0);
@@ -484,7 +484,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(0.0001);
 	};
 
-~rotc4 = 1000.collect{
+~rotc4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis8.[i4].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis8.[i4].[1].sqrt,0);
@@ -512,9 +512,9 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
-~axis9=1000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis9=100.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
-	~rotd1 = 1000.collect{
+	~rotd1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 //		i=Quaternion(0,~axis9.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis9.[i1].[1].sqrt,0);
@@ -527,7 +527,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(0.0001);
 	};
-~rotd2 = 1000.collect{
+~rotd2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis9.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis9.[i2].[1].sqrt,0);
@@ -541,7 +541,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(0.0001);
 	};
 
-~rotd3 = 1000.collect{
+~rotd3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 	//		i=Quaternion(0,~axis9.[i3].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis9.[i3].[1].sqrt,0);
@@ -555,7 +555,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(0.0001);
 	};
 
-~rotd4 = 1000.collect{
+~rotd4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 	//	i=Quaternion(0,~axis9.[i4].[0].sqrt,0,0);
 	//j=Quaternion(0,0,~axis9.[i4].[1].sqrt,0);
@@ -583,9 +583,9 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
-~axis4=1000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis4=100.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
-	~posb1 = 1000.collect{
+	~posb1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis4.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis4.[i1].[1].sqrt,0);
@@ -598,7 +598,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(0.0001);
 	};
-~posb2 = 1000.collect{
+~posb2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis4.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis4.[i2].[1].sqrt,0);
@@ -612,7 +612,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(0.0001);
 	};
 
-~posb3 = 1000.collect{
+~posb3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis4.[i3].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis4.[i3].[1].sqrt,0);
@@ -626,7 +626,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(0.0001);
 	};
 
-~posb4 = 1000.collect{
+~posb4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis4.[i4].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis4.[i4].[1].sqrt,0);
@@ -654,9 +654,9 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
-~axis5=1000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis5=100.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
-	~posc1 = 1000.collect{
+	~posc1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis5.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis5.[i1].[1].sqrt,0);
@@ -669,7 +669,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(0.0001);
 	};
-~posc2 = 1000.collect{
+~posc2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis5.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis5.[i2].[1].sqrt,0);
@@ -683,7 +683,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(0.0001);
 	};
 
-~posc3 = 1000.collect{
+~posc3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis5.[i3].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis5.[i3].[1].sqrt,0);
@@ -697,7 +697,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(0.0001);
 	};
 
-~posc4 = 1000.collect{
+~posc4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis5.[i4].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis5.[i4].[1].sqrt,0);
@@ -725,9 +725,9 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
-~axis6=1000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis6=100.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
-	~posd1 = 1000.collect{
+	~posd1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis6.[i1].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis6.[i1].[1].sqrt,0);
@@ -740,7 +740,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(0.0001);
 	};
-~posd2 = 1000.collect{
+~posd2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis6.[i2].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis6.[i2].[1].sqrt,0);
@@ -754,7 +754,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(0.0001);
 	};
 
-~posd3 = 1000.collect{
+~posd3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis6.[i3].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis6.[i3].[1].sqrt,0);
@@ -768,7 +768,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(0.0001);
 	};
 
-~posd4 = 1000.collect{
+~posd4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 //			i=Quaternion(0,~axis6.[i4].[0].sqrt,0,0);
 //		j=Quaternion(0,0,~axis6.[i4].[1].sqrt,0);
@@ -796,9 +796,9 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
-~axis1=1000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis1=100.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
-	~phase1 = 1000.collect{
+	~phase1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 	i=Quaternion(0,~rot2.[i1],0,0);
 	j=Quaternion(0,0,~rot3.[i1],0);
@@ -809,7 +809,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph1=(v1.a*m).round(1/16);
 	};
 
-~phase2 = 1000.collect{
+~phase2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 	i=Quaternion(0,~rot2.[i2],0,0);
 	j=Quaternion(0,0,~rot3.[i2],0);
@@ -820,7 +820,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(1/16);
 	};
 
-~phase3 = 1000.collect{
+~phase3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 	i=Quaternion(0,~rot2.[i3],0,0);
 	j=Quaternion(0,0,~rot3.[i3],0);
@@ -832,7 +832,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 	};
 
-~phase4 = 1000.collect{
+~phase4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 	i=Quaternion(0,~rot2.[i4],0,0);
 	j=Quaternion(0,0,~rot3.[i4],0);
@@ -856,9 +856,9 @@ v2=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v3=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
-~axis2=1000.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
+~axis2=100.collect{[0.999999.rand,0.999999.rand,0.999999.rand].normalizeSum;};
 
-	~n1 = 1000.collect{
+	~n1 = 100.collect{
 		angle1=((360-(360/1.6180339887499)));
 	i=Quaternion(0,~pos2.[i1],0,0);
 	j=Quaternion(0,0,~pos3.[i1],0);
@@ -868,7 +868,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	v1=q1*v1*q1.conjugate;
 	ph1=(v1.a*m).round(1);
 	};
-~n2 = 1000.collect{
+~n2 = 100.collect{
 		angle2=((360-(360/1.6180339887499)));
 	i=Quaternion(0,~pos2.[i2],0,0);
 	j=Quaternion(0,0,~pos3.[i2],0);
@@ -879,7 +879,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph2=(v2.b*m).round(1);
 	};
 
-~n3 = 1000.collect{
+~n3 = 100.collect{
 		angle3=((360-(360/1.6180339887499)));
 	i=Quaternion(0,~pos2.[i3],0,0);
 	j=Quaternion(0,0,~pos3.[i3],0);
@@ -890,7 +890,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	ph3=(v3.c*m).round(1);
 	};
 
-~n4 = 1000.collect{
+~n4 = 100.collect{
 		angle4=((360-(360/1.6180339887499)));
 	i=Quaternion(0,~pos2.[i4],0,0);
 	j=Quaternion(0,0,~pos3.[i4],0);
@@ -903,7 +903,6 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 	};
 );
 )
-
 
 (
 ~n1=~n1*(2);
@@ -918,7 +917,7 @@ Scale.directory
 (
 b=Pdef(\2, Pbind(\instrument, \ob,
 	//\dur,1/2,
-	\dur,Pseq(~phase2.abs,inf),
+	\dur,Pseq(~phase2.abs,1),
 \n1,PdegreeToKey(Pseq(~n2,inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -933,7 +932,7 @@ b=Pdef(\2, Pbind(\instrument, \ob,
 ));
 c=Pdef(\3, Pbind(\instrument, \oc,
 	//\dur,1/2,
-	\dur,Pseq(~phase3.abs,inf),
+	\dur,Pseq(~phase3.abs,1),
 \n1,PdegreeToKey(Pseq(~n3,inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -948,7 +947,7 @@ c=Pdef(\3, Pbind(\instrument, \oc,
 ));
 d=Pdef(\4, Pbind(\instrument, \od,
 	//\dur,1/2,
-	\dur,Pseq(~phase4.abs,inf),
+	\dur,Pseq(~phase4.abs,1),
 \n1,PdegreeToKey(Pseq(~n4,inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -966,7 +965,7 @@ d=Pdef(\4, Pbind(\instrument, \od,
 (
 bb=Pdef(\22, Pbind(\instrument, \ob,
 	//\dur,1/2,
-	\dur,Pseq(~phase2.abs.reverse,inf),
+	\dur,Pseq(~phase2.abs.reverse,1),
 \n1,PdegreeToKey(Pseq(~n2.reverse,inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -981,7 +980,7 @@ bb=Pdef(\22, Pbind(\instrument, \ob,
 ));
 cc=Pdef(\33, Pbind(\instrument, \oc,
 	//\dur,1/2,
-	\dur,Pseq(~phase3.abs.reverse,inf),
+	\dur,Pseq(~phase3.abs.reverse,1),
 \n1,PdegreeToKey(Pseq(~n3.reverse,inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -996,7 +995,7 @@ cc=Pdef(\33, Pbind(\instrument, \oc,
 ));
 dd=Pdef(\44, Pbind(\instrument, \od,
 	//\dur,1/2,
-	\dur,Pseq(~phase4.abs.reverse,inf),
+	\dur,Pseq(~phase4.abs.reverse,1),
 \n1,PdegreeToKey(Pseq(~n4.reverse,inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -1036,7 +1035,7 @@ Tdef(\h).clear;
 (
 b=Pdef(\2, Pbind(\instrument, \ob,
 	//\dur,1/2,
-	\dur,Ppatlace([Pseq(~phase2.abs,inf),Pseq(~phase2.abs.reverse,inf)],inf),
+	\dur,Ppatlace([Pseq(~phase2.abs,1),Pseq(~phase2.abs.reverse,1)],inf),
 	\n1,PdegreeToKey(Ppatlace([Pseq(~n2,inf),Pseq(~n2.reverse,inf)],inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -1051,7 +1050,7 @@ b=Pdef(\2, Pbind(\instrument, \ob,
 ));
 c=Pdef(\3, Pbind(\instrument, \oc,
 	//\dur,1/2,
-	\dur,Ppatlace([Pseq(~phase3.abs,inf),Pseq(~phase3.abs.reverse,inf)],inf),
+	\dur,Ppatlace([Pseq(~phase3.abs,1),Pseq(~phase3.abs.reverse,1)],inf),
 	\n1,PdegreeToKey(Ppatlace([Pseq(~n3,inf),Pseq(~n3.reverse,inf)],inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -1066,7 +1065,7 @@ c=Pdef(\3, Pbind(\instrument, \oc,
 ));
 d=Pdef(\4, Pbind(\instrument, \od,
 	//\dur,1/2,
-	\dur,Ppatlace([Pseq(~phase4.abs,inf),Pseq(~phase4.abs.reverse,inf)],inf),
+	\dur,Ppatlace([Pseq(~phase4.abs,1),Pseq(~phase4.abs.reverse,1)],inf),
 	\n1,PdegreeToKey(Ppatlace([Pseq(~n4,inf),Pseq(~n4.reverse,inf)],inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -1095,11 +1094,11 @@ d.play;
 s.record(numChannels:4)
 )
 
-/////////////////////////pattern for x and y osc to behave according to above
+/////////////////////////pattern for x and y osc to behave according to above, either one
 (
 b=Pdef(\2, Pbind(\instrument, \ob,
 	//\dur,1/2,
-	\dur,Pseq(~phase2.abs,inf),
+	\dur,Pseq(~phase2.abs,1),
 \n1,PdegreeToKey(Pseq(~n2,inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -1120,7 +1119,7 @@ b=Pdef(\2, Pbind(\instrument, \ob,
 ));
 c=Pdef(\3, Pbind(\instrument, \oc,
 	//\dur,1/2,
-	\dur,Pseq(~phase3.abs,inf),
+	\dur,Pseq(~phase3.abs,1),
 \n1,PdegreeToKey(Pseq(~n3,inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -1141,7 +1140,7 @@ c=Pdef(\3, Pbind(\instrument, \oc,
 ));
 d=Pdef(\4, Pbind(\instrument, \od,
 	//\dur,1/2,
-	\dur,Pseq(~phase4.abs,inf),
+	\dur,Pseq(~phase4.abs,1),
 \n1,PdegreeToKey(Pseq(~n4,inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -1161,3 +1160,158 @@ d=Pdef(\4, Pbind(\instrument, \od,
 	\decay,Pbrown(2,8,1,inf);
 ));
 )
+/////////////////////////////////in one pattern
+
+(
+~phase2=~phase2++~phase2.reverse;
+~n2=~n2++~n2.reverse;
+~phase3=~phase3++~phase3.reverse;
+~n3=~n3++~n3.reverse;
+~phase4=~phase4++~phase4.reverse;
+~n4=~n4++~n4.reverse;
+~posb2=~posb2++~posb2.reverse;
+~posb3=~posb3++~posb3.reverse;
+~posb4=~posb4++~posb4.reverse;
+~rotb2=~rotb2++~rotb2.reverse;
+~rotb3=~rotb3++~rotb3.reverse;
+~rotb4=~rotb4++~rotb4.reverse;
+~posc2=~posc2++~posc2.reverse;
+~posc3=~posc3++~posc3.reverse;
+~posc4=~posc4++~posc4.reverse;
+~rotc2=~rotc2++~rotc2.reverse;
+~rotc3=~rotc3++~rotc3.reverse;
+~rotc4=~rotc4++~rotc4.reverse;
+~posd2=~posd2++~posd2.reverse;
+~posd3=~posd3++~posd3.reverse;
+~posd4=~posd4++~posd4.reverse;
+~rotd2=~rotd2++~rotd2.reverse;
+~rotd3=~rotd3++~rotd3.reverse;
+~rotd4=~rotd4++~rotd4.reverse;
+)
+(
+b=Pdef(\2, Pbind(\instrument, \ob,
+	//\dur,1/2,
+	\dur,Pseq(~phase2.abs,1),
+\n1,PdegreeToKey(Pseq(~n2,inf),Scale.mixolydian),
+	\cutt,Pbrown(220*2,220*8,100,inf),
+		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
+	\x,Pseq(~posb2,inf),
+	\y,Pseq(~posb3,inf),
+	\z,Pseq(~posb4,inf),
+	\rx,Pseq(~rotb2,inf),
+	\ry,Pseq(~rotb3,inf),
+	\rz,Pseq(~rotb4,inf),
+	\dist,Pgauss(0.2,0.1,inf),
+	\decay,Pbrown(2,8,1,inf);
+));
+c=Pdef(\3, Pbind(\instrument, \oc,
+	//\dur,1/2,
+	\dur,Pseq(~phase3.abs,1),
+\n1,PdegreeToKey(Pseq(~n3,inf),Scale.mixolydian),
+	\cutt,Pbrown(220*2,220*8,100,inf),
+		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
+	\x,Pseq(~posc2,inf),
+	\y,Pseq(~posc3,inf),
+	\z,Pseq(~posc4,inf),
+	\rx,Pseq(~rotc2,inf),
+	\ry,Pseq(~rotc3,inf),
+	\rz,Pseq(~rotc4,inf),
+	\dist,Pgauss(0.2,0.1,inf),
+	\decay,Pbrown(2,8,1,inf);
+));
+d=Pdef(\4, Pbind(\instrument, \od,
+	//\dur,1/2,
+	\dur,Pseq(~phase4.abs,1),
+\n1,PdegreeToKey(Pseq(~n4,inf),Scale.mixolydian),
+	\cutt,Pbrown(220*2,220*8,100,inf),
+	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
+	\x,Pseq(~posd2,inf),
+	\y,Pseq(~posd3,inf),
+	\z,Pseq(~posd4,inf),
+	\rx,Pseq(~rotd2,inf),
+	\ry,Pseq(~rotd3,inf),
+	\rz,Pseq(~rotd4,inf),
+	\dist,Pgauss(0.2,0.1,inf),
+	\decay,Pbrown(2,8,1,inf);
+));
+)
+(
+bb=Pdef(\22, Pbind(\instrument, \ob,
+	//\dur,1/2,
+	\dur,Pseq(~phase2.abs.reverse,1),
+\n1,PdegreeToKey(Pseq(~n2.reverse,inf),Scale.mixolydian),
+	\cutt,Pbrown(220*2,220*8,100,inf),
+		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
+	\x,Pseq(~posb2.reverse,inf),
+	\y,Pseq(~posb3.reverse,inf),
+	\z,Pseq(~posb4.reverse,inf),
+	\rx,Pseq(~rotb2.reverse,inf),
+	\ry,Pseq(~rotb3.reverse,inf),
+	\rz,Pseq(~rotb4.reverse,inf),
+	\dist,Pgauss(0.2,0.1,inf),
+	\decay,Pbrown(2,8,1,inf);
+));
+cc=Pdef(\33, Pbind(\instrument, \oc,
+	//\dur,1/2,
+	\dur,Pseq(~phase3.abs.reverse,1),
+\n1,PdegreeToKey(Pseq(~n3.reverse,inf),Scale.mixolydian),
+	\cutt,Pbrown(220*2,220*8,100,inf),
+		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
+	\x,Pseq(~posc2.reverse,inf),
+	\y,Pseq(~posc3.reverse,inf),
+	\z,Pseq(~posc4.reverse,inf),
+	\rx,Pseq(~rotc2.reverse,inf),
+	\ry,Pseq(~rotc3.reverse,inf),
+	\rz,Pseq(~rotc4.reverse,inf),
+	\dist,Pgauss(0.2,0.1,inf),
+	\decay,Pbrown(2,8,1,inf);
+));
+dd=Pdef(\44, Pbind(\instrument, \od,
+	//\dur,1/2,
+	\dur,Pseq(~phase4.abs.reverse,1),
+\n1,PdegreeToKey(Pseq(~n4.reverse,inf),Scale.mixolydian),
+	\cutt,Pbrown(220*2,220*8,100,inf),
+	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
+	\x,Pseq(~posd2.reverse,inf),
+	\y,Pseq(~posd3.reverse,inf),
+	\z,Pseq(~posd4.reverse,inf),
+	\rx,Pseq(~rotd2.reverse,inf),
+	\ry,Pseq(~rotd3.reverse,inf),
+	\rz,Pseq(~rotd4.reverse,inf),
+	\dist,Pgauss(0.2,0.1,inf),
+	\decay,Pbrown(2,8,1,inf);
+));
+)
+(
+b.play;
+//s.record(numChannels:4)
+//)
+//(
+c.play;
+//s.record(numChannels:4)
+//)
+//(
+d.play;
+s.record(numChannels:4)
+)
+
+(
+Tdef.new(\h,{loop({
+
+	b.play;
+c.play;
+d.play;
+	(1).wait;
+		bb.play;
+cc.play;
+dd.play;
+
+
+	}
+)})
+)
+
+
+Tdef(\h).stop;
+Tdef(\h).play;
+Tdef(\h).clear;
