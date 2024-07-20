@@ -901,7 +901,7 @@ d=Pdef(\4, Pbind(\instrument, \od,
 )
 
 (
-b=Pdef(\2, Pbind(\instrument, \ob,
+bb=Pdef(\22, Pbind(\instrument, \ob,
 	//\dur,1/2,
 	\dur,Pseq(~phase2.abs.reverse,inf),
 \n1,PdegreeToKey(Pseq(~n2.reverse,inf),Scale.mixolydian),
@@ -916,7 +916,7 @@ b=Pdef(\2, Pbind(\instrument, \ob,
 	\dist,Pgauss(0.2,0.1,inf),
 	\decay,Pbrown(2,8,1,inf);
 ));
-c=Pdef(\3, Pbind(\instrument, \oc,
+cc=Pdef(\33, Pbind(\instrument, \oc,
 	//\dur,1/2,
 	\dur,Pseq(~phase3.abs.reverse,inf),
 \n1,PdegreeToKey(Pseq(~n3.reverse,inf),Scale.mixolydian),
@@ -931,7 +931,7 @@ c=Pdef(\3, Pbind(\instrument, \oc,
 	\dist,Pgauss(0.2,0.1,inf),
 	\decay,Pbrown(2,8,1,inf);
 ));
-d=Pdef(\4, Pbind(\instrument, \od,
+dd=Pdef(\44, Pbind(\instrument, \od,
 	//\dur,1/2,
 	\dur,Pseq(~phase4.abs.reverse,inf),
 \n1,PdegreeToKey(Pseq(~n4.reverse,inf),Scale.mixolydian),
@@ -1010,4 +1010,25 @@ c.play;
 d.play;
 s.record(numChannels:4)
 )
+
+(
+Tdef.new(\h,{loop({
+
+	b.play;
+c.play;
+d.play;
+	(1).wait;
+		bb.play;
+cc.play;
+dd.play;
+
+
+	}
+)})
+)
+
+
+Tdef(\h).stop;
+Tdef(\h).play;
+Tdef(\h).clear;
 
