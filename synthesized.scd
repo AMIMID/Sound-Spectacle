@@ -914,7 +914,7 @@ v4=Quaternion(0,r.[0].sqrt,r.[1].sqrt,r.[2].sqrt);
 
 Scale.directory
 
-
+//////////pattern for mobius strib of sequential or parallel play of directions
 (
 b=Pdef(\2, Pbind(\instrument, \ob,
 	//\dur,1/2,
@@ -1011,7 +1011,28 @@ dd=Pdef(\44, Pbind(\instrument, \od,
 ));
 )
 
+(
+Tdef.new(\h,{loop({
 
+	b.play;
+c.play;
+d.play;
+	(1).wait;
+		bb.play;
+cc.play;
+dd.play;
+
+
+	}
+)})
+)
+
+
+Tdef(\h).stop;
+Tdef(\h).play;
+Tdef(\h).clear;
+
+////////////////pattern for web of directions
 (
 b=Pdef(\2, Pbind(\instrument, \ob,
 	//\dur,1/2,
@@ -1074,27 +1095,7 @@ d.play;
 s.record(numChannels:4)
 )
 
-(
-Tdef.new(\h,{loop({
-
-	b.play;
-c.play;
-d.play;
-	(1).wait;
-		bb.play;
-cc.play;
-dd.play;
-
-
-	}
-)})
-)
-
-
-Tdef(\h).stop;
-Tdef(\h).play;
-Tdef(\h).clear;
-
+/////////////////////////pattern for x and y osc to behave according to above
 (
 b=Pdef(\2, Pbind(\instrument, \ob,
 	//\dur,1/2,
