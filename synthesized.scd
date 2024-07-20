@@ -27,26 +27,38 @@ Buffer.freeAll
 (
 (
 SynthDef.new(\ob, {
-arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist=0.1;
+arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,x1=1,y1=1,z1=1,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,dist=0.1;
 	var q,q1,i,j,k,i1,j1,k1,va,vb,or=0,freq, env1,m=1,bank, pitch, fund, angle=0,r1,p;
-	var osc1_x,cva,phx,ang=(360-(360/1.6180339887499)),vektor,qv;
+	var osc1_x,osc_y,cva,phx,phy,ang=(360-(360/1.6180339887499)),vektor,qv,angle1=90;
+	var r2,p1,cvb,vektor1;
 	var wrappedOut1 = { |busArray, signalArray|
+	[busArray, signalArray].flop.do { |pair|
+		Out.ar(pair[0], pair[1])}};
+	var wrappedOut2 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
 		Out.ar(pair[0], pair[1])}};
 
 	var out = NamedControl.kr(\out, [0, 1, 2, 3]);  // multiple buses!
 
 	r1=[rx,ry,rz];
+	//r2=[rx1,ry1,rz1];
 
 	i = Quaternion(0, r1.[0], 0, 0);
 	j = Quaternion(0, 0,r1.[1], 0);
 	k = Quaternion(0, 0, 0, r1.[2]);
 
+	//i1 = Quaternion(0, r2.[0], 0, 0);
+	//j1 = Quaternion(0, 0,r2.[1], 0);
+	//k1 = Quaternion(0, 0, 0, r2.[2]);
+
 	vektor=i+j+k;
+	//vektor1=i1+j1+k1;
 
 	p=[x,y,z];
+	//p1=[x1,y1,z1];
 
 	va=Quaternion(0,p.[0],p.[1],p.[2]);
+	//vb=Quaternion(0,p1.[0],p1.[1],p1.[2]);
 
 	bank=16;
 	pitch=2.pow(n1/(2*6));
@@ -55,27 +67,36 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist
 
 	bank.do{
 angle=(angle+(360-(360/1.6180339887499))).wrap(0,360);
+//angle1=(angle1+(360-(360/1.6180339887499))).wrap(0,360);
 
 	qv=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(Quaternion(0,0,0,1))));
 
 	vektor=qv*vektor*qv.conjugate;
+	//vektor1=qv*vektor1*qv.conjugate;
 
 	q=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(vektor)));
+	//q1=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(vektor1)));
 
 	va=q*va*q.conjugate;
+	//vb=q1*vb*q1.conjugate;
 
 	cva=Cartesian(va.b,va.c,va.d);
+		//cvb=Cartesian(vb.b,vb.c,vb.d);
 
     phx=exp(Complex(0,1)*(angle.degrad)).phase;
+		// phy=exp(Complex(0,1)*(angle.degrad)).phase;
 
 env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:dist);
 
 
 osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
 
+//osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
+
 m=m+1;
 
 	wrappedOut1.value(out,LPF.ar(LeakDC.ar((osc1_x)*env1),cutt));
+	//	wrappedOut2.value(out,LPF.ar(LeakDC.ar((osc1_y)*env1),cutt));
 
 	//Out.ar(0,LPF.ar(LeakDC.ar((osc1_x)*env),cutt));
 
@@ -85,26 +106,38 @@ m=m+1;
 );
 (
 SynthDef.new(\oc, {
-arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist=0.1;
+arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,x1=1,y1=1,z1=1,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,dist=0.1;
 	var q,q1,i,j,k,i1,j1,k1,va,vb,or=0,freq, env1,m=1,bank, pitch, fund, angle=0,r1,p;
-	var osc1_x,cva,phx,ang=(360-(360/1.6180339887499)),vektor,qv;
+	var osc1_x,osc_y,cva,phx,phy,ang=(360-(360/1.6180339887499)),vektor,qv,angle1=90;
+	var r2,p1,cvb,vektor1;
 	var wrappedOut1 = { |busArray, signalArray|
+	[busArray, signalArray].flop.do { |pair|
+		Out.ar(pair[0], pair[1])}};
+	var wrappedOut2 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
 		Out.ar(pair[0], pair[1])}};
 
 	var out = NamedControl.kr(\out, [0, 1, 2, 3]);  // multiple buses!
 
 	r1=[rx,ry,rz];
+	//r2=[rx1,ry1,rz1];
 
 	i = Quaternion(0, r1.[0], 0, 0);
 	j = Quaternion(0, 0,r1.[1], 0);
 	k = Quaternion(0, 0, 0, r1.[2]);
 
+	//i1 = Quaternion(0, r2.[0], 0, 0);
+	//j1 = Quaternion(0, 0,r2.[1], 0);
+	//k1 = Quaternion(0, 0, 0, r2.[2]);
+
 	vektor=i+j+k;
+	//vektor1=i1+j1+k1;
 
 	p=[x,y,z];
+	//p1=[x1,y1,z1];
 
 	va=Quaternion(0,p.[0],p.[1],p.[2]);
+	//vb=Quaternion(0,p1.[0],p1.[1],p1.[2]);
 
 	bank=16;
 	pitch=2.pow(n1/(2*6));
@@ -113,27 +146,36 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist
 
 	bank.do{
 angle=(angle+(360-(360/1.6180339887499))).wrap(0,360);
+//angle1=(angle1+(360-(360/1.6180339887499))).wrap(0,360);
 
-	qv=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(Quaternion(0,0,1,0))));
+	qv=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(Quaternion(0,0,0,1))));
 
 	vektor=qv*vektor*qv.conjugate;
+	//vektor1=qv*vektor1*qv.conjugate;
 
 	q=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(vektor)));
+	//q1=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(vektor1)));
 
 	va=q*va*q.conjugate;
+	//vb=q1*vb*q1.conjugate;
 
 	cva=Cartesian(va.b,va.c,va.d);
+		//cvb=Cartesian(vb.b,vb.c,vb.d);
 
     phx=exp(Complex(0,1)*(angle.degrad)).phase;
+		// phy=exp(Complex(0,1)*(angle.degrad)).phase;
 
 env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:dist);
 
 
 osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
 
+//osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
+
 m=m+1;
 
 	wrappedOut1.value(out,LPF.ar(LeakDC.ar((osc1_x)*env1),cutt));
+	//	wrappedOut2.value(out,LPF.ar(LeakDC.ar((osc1_y)*env1),cutt));
 
 	//Out.ar(0,LPF.ar(LeakDC.ar((osc1_x)*env),cutt));
 
@@ -143,26 +185,38 @@ m=m+1;
 );
 (
 SynthDef.new(\od, {
-arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist=0.1;
+arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,x1=1,y1=1,z1=1,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,dist=0.1;
 	var q,q1,i,j,k,i1,j1,k1,va,vb,or=0,freq, env1,m=1,bank, pitch, fund, angle=0,r1,p;
-	var osc1_x,cva,phx,ang=(360-(360/1.6180339887499)),vektor,qv;
+	var osc1_x,osc_y,cva,phx,phy,ang=(360-(360/1.6180339887499)),vektor,qv,angle1=90;
+	var r2,p1,cvb,vektor1;
 	var wrappedOut1 = { |busArray, signalArray|
+	[busArray, signalArray].flop.do { |pair|
+		Out.ar(pair[0], pair[1])}};
+	var wrappedOut2 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
 		Out.ar(pair[0], pair[1])}};
 
 	var out = NamedControl.kr(\out, [0, 1, 2, 3]);  // multiple buses!
 
 	r1=[rx,ry,rz];
+	//r2=[rx1,ry1,rz1];
 
 	i = Quaternion(0, r1.[0], 0, 0);
 	j = Quaternion(0, 0,r1.[1], 0);
 	k = Quaternion(0, 0, 0, r1.[2]);
 
+	//i1 = Quaternion(0, r2.[0], 0, 0);
+	//j1 = Quaternion(0, 0,r2.[1], 0);
+	//k1 = Quaternion(0, 0, 0, r2.[2]);
+
 	vektor=i+j+k;
+	//vektor1=i1+j1+k1;
 
 	p=[x,y,z];
+	//p1=[x1,y1,z1];
 
 	va=Quaternion(0,p.[0],p.[1],p.[2]);
+	//vb=Quaternion(0,p1.[0],p1.[1],p1.[2]);
 
 	bank=16;
 	pitch=2.pow(n1/(2*6));
@@ -171,27 +225,36 @@ arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,rx=1,ry=1,rz=1,dist
 
 	bank.do{
 angle=(angle+(360-(360/1.6180339887499))).wrap(0,360);
+//angle1=(angle1+(360-(360/1.6180339887499))).wrap(0,360);
 
-	qv=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(Quaternion(0,1,0,0))));
+	qv=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(Quaternion(0,0,0,1))));
 
 	vektor=qv*vektor*qv.conjugate;
+	//vektor1=qv*vektor1*qv.conjugate;
 
 	q=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(vektor)));
+	//q1=(cos(ang.degrad/2)+(sin(ang.degrad/2)*(vektor1)));
 
 	va=q*va*q.conjugate;
+	//vb=q1*vb*q1.conjugate;
 
 	cva=Cartesian(va.b,va.c,va.d);
+		//cvb=Cartesian(vb.b,vb.c,vb.d);
 
     phx=exp(Complex(0,1)*(angle.degrad)).phase;
+		// phy=exp(Complex(0,1)*(angle.degrad)).phase;
 
 env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:dist);
 
 
 osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
 
+//osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
+
 m=m+1;
 
 	wrappedOut1.value(out,LPF.ar(LeakDC.ar((osc1_x)*env1),cutt));
+	//	wrappedOut2.value(out,LPF.ar(LeakDC.ar((osc1_y)*env1),cutt));
 
 	//Out.ar(0,LPF.ar(LeakDC.ar((osc1_x)*env),cutt));
 
@@ -952,7 +1015,7 @@ dd=Pdef(\44, Pbind(\instrument, \od,
 (
 b=Pdef(\2, Pbind(\instrument, \ob,
 	//\dur,1/2,
-	\dur,Ppatlace([Pseq(~phase2.abs,1),Pseq(~phase2.abs.reverse,1)],inf),
+	\dur,Ppatlace([Pseq(~phase2.abs,inf),Pseq(~phase2.abs.reverse,inf)],inf),
 	\n1,PdegreeToKey(Ppatlace([Pseq(~n2,inf),Pseq(~n2.reverse,inf)],inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -967,7 +1030,7 @@ b=Pdef(\2, Pbind(\instrument, \ob,
 ));
 c=Pdef(\3, Pbind(\instrument, \oc,
 	//\dur,1/2,
-	\dur,Ppatlace([Pseq(~phase3.abs,1),Pseq(~phase3.abs.reverse,1)],inf),
+	\dur,Ppatlace([Pseq(~phase3.abs,inf),Pseq(~phase3.abs.reverse,inf)],inf),
 	\n1,PdegreeToKey(Ppatlace([Pseq(~n3,inf),Pseq(~n3.reverse,inf)],inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -982,7 +1045,7 @@ c=Pdef(\3, Pbind(\instrument, \oc,
 ));
 d=Pdef(\4, Pbind(\instrument, \od,
 	//\dur,1/2,
-	\dur,Ppatlace([Pseq(~phase4.abs,1),Pseq(~phase4.abs.reverse,1)],inf),
+	\dur,Ppatlace([Pseq(~phase4.abs,inf),Pseq(~phase4.abs.reverse,inf)],inf),
 	\n1,PdegreeToKey(Ppatlace([Pseq(~n4,inf),Pseq(~n4.reverse,inf)],inf),Scale.mixolydian),
 	\cutt,Pbrown(220*2,220*8,100,inf),
 	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
@@ -1032,3 +1095,68 @@ Tdef(\h).stop;
 Tdef(\h).play;
 Tdef(\h).clear;
 
+(
+b=Pdef(\2, Pbind(\instrument, \ob,
+	//\dur,1/2,
+	\dur,Pseq(~phase2.abs,inf),
+\n1,PdegreeToKey(Pseq(~n2,inf),Scale.mixolydian),
+	\cutt,Pbrown(220*2,220*8,100,inf),
+		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
+	\x,Pseq(~posb2,inf),
+	\y,Pseq(~posb3,inf),
+	\z,Pseq(~posb4,inf),
+	\rx,Pseq(~rotb2,inf),
+	\ry,Pseq(~rotb3,inf),
+	\rz,Pseq(~rotb4,inf),
+	\x1,Pseq(~posb2.reverse,inf),
+	\y1,Pseq(~posb3.reverse,inf),
+	\z1,Pseq(~posb4.reverse,inf),
+	\rx1,Pseq(~rotb2.reverse,inf),
+	\ry1,Pseq(~rotb3.reverse,inf),
+	\rz1,Pseq(~rotb4.reverse,inf),
+	\dist,Pgauss(0.2,0.1,inf),
+	\decay,Pbrown(2,8,1,inf);
+));
+c=Pdef(\3, Pbind(\instrument, \oc,
+	//\dur,1/2,
+	\dur,Pseq(~phase3.abs,inf),
+\n1,PdegreeToKey(Pseq(~n3,inf),Scale.mixolydian),
+	\cutt,Pbrown(220*2,220*8,100,inf),
+		\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
+	\x,Pseq(~posc2,inf),
+	\y,Pseq(~posc3,inf),
+	\z,Pseq(~posc4,inf),
+	\rx,Pseq(~rotc2,inf),
+	\ry,Pseq(~rotc3,inf),
+	\rz,Pseq(~rotc4,inf),
+	\x1,Pseq(~posc2.reverse,inf),
+	\y1,Pseq(~posc3.reverse,inf),
+	\z1,Pseq(~posc4.reverse,inf),
+	\rx1,Pseq(~rotc2.reverse,inf),
+	\ry1,Pseq(~rotc3.reverse,inf),
+	\rz1,Pseq(~rotc4.reverse,inf),
+	\dist,Pgauss(0.2,0.1,inf),
+	\decay,Pbrown(2,8,1,inf);
+));
+d=Pdef(\4, Pbind(\instrument, \od,
+	//\dur,1/2,
+	\dur,Pseq(~phase4.abs,inf),
+\n1,PdegreeToKey(Pseq(~n4,inf),Scale.mixolydian),
+	\cutt,Pbrown(220*2,220*8,100,inf),
+	\out,Pn(Pshuf([0, 1, 2, 3], 1), inf).clump(4).collect([_]),
+	\x,Pseq(~posd2,inf),
+	\y,Pseq(~posd3,inf),
+	\z,Pseq(~posd4,inf),
+	\rx,Pseq(~rotd2,inf),
+	\ry,Pseq(~rotd3,inf),
+	\rz,Pseq(~rotd4,inf),
+	\x1,Pseq(~posd2.reverse,inf),
+	\y1,Pseq(~posd3.reverse,inf),
+	\z1,Pseq(~posd4.reverse,inf),
+	\rx1,Pseq(~rotd2.reverse,inf),
+	\ry1,Pseq(~rotd3.reverse,inf),
+	\rz1,Pseq(~rotd4.reverse,inf),
+	\dist,Pgauss(0.2,0.1,inf),
+	\decay,Pbrown(2,8,1,inf);
+));
+)
