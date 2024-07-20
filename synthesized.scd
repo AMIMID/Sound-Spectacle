@@ -29,7 +29,7 @@ Buffer.freeAll
 SynthDef.new(\ob, {
 arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,x1=1,y1=1,z1=1,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,dist=0.1;
 	var q,q1,i,j,k,i1,j1,k1,va,vb,or=0,freq, env1,m=1,bank, pitch, fund, angle=0,r1,p;
-	var osc1_x,osc_y,cva,phx,phy,ang=(360-(360/1.6180339887499)),vektor,qv,angle1=90;
+	var osc1_x,osc1_y,cva,phx,phy,ang=(360-(360/1.6180339887499)),vektor,qv,angle1=90;
 	var r2,p1,cvb,vektor1;
 	var wrappedOut1 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
@@ -91,7 +91,7 @@ env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:d
 
 osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
 
-//osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
+//osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
 
 m=m+1;
 
@@ -108,7 +108,7 @@ m=m+1;
 SynthDef.new(\oc, {
 arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,x1=1,y1=1,z1=1,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,dist=0.1;
 	var q,q1,i,j,k,i1,j1,k1,va,vb,or=0,freq, env1,m=1,bank, pitch, fund, angle=0,r1,p;
-	var osc1_x,osc_y,cva,phx,phy,ang=(360-(360/1.6180339887499)),vektor,qv,angle1=90;
+	var osc1_x,osc1_y,cva,phx,phy,ang=(360-(360/1.6180339887499)),vektor,qv,angle1=90;
 	var r2,p1,cvb,vektor1;
 	var wrappedOut1 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
@@ -170,7 +170,7 @@ env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:d
 
 osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
 
-//osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
+//osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
 
 m=m+1;
 
@@ -187,7 +187,7 @@ m=m+1;
 SynthDef.new(\od, {
 arg  n1=1, cutt=440,decay=6,t=2,attack=0.05,x=1,y=0.5,z=0.25,x1=1,y1=1,z1=1,rx=1,ry=1,rz=1,rx1=1,ry1=1,rz1=1,dist=0.1;
 	var q,q1,i,j,k,i1,j1,k1,va,vb,or=0,freq, env1,m=1,bank, pitch, fund, angle=0,r1,p;
-	var osc1_x,osc_y,cva,phx,phy,ang=(360-(360/1.6180339887499)),vektor,qv,angle1=90;
+	var osc1_x,osc1_y,cva,phx,phy,ang=(360-(360/1.6180339887499)),vektor,qv,angle1=90;
 	var r2,p1,cvb,vektor1;
 	var wrappedOut1 = { |busArray, signalArray|
 	[busArray, signalArray].flop.do { |pair|
@@ -249,7 +249,7 @@ env1=EnvGen.ar(Env.perc(attack,decay,pitch.reciprocal),doneAction:2,levelScale:d
 
 osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phx,2pi)),~b.bufnum,cva.theta.raddeg,cva.phi.raddeg);
 
-//osc1_x=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
+//osc1_y=VBAP.ar(4,SinOsc.ar((freq*m),mul:m.reciprocal,phase:SinOsc.ar(0.1,phy,2pi)),~b.bufnum,cvb.theta.raddeg,cvb.phi.raddeg);
 
 m=m+1;
 
